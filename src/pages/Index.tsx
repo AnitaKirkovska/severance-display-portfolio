@@ -88,7 +88,6 @@ const Index = () => {
     if (!foundWords[buttonId]?.[wordIndex]) {
       setCollectingButton(buttonId);
       
-      // Animate each letter in sequence
       for (let i = 0; i < wordLetters.length; i++) {
         const { row, col } = wordLetters[i];
         const cellElement = document.getElementById(`cell-${row}-${col}`);
@@ -105,12 +104,10 @@ const Index = () => {
           cellElement.style.setProperty('--move-y', `${moveY}px`);
           cellElement.classList.add('collecting-word');
           
-          // Add a small delay between each letter
           await new Promise(resolve => setTimeout(resolve, 100));
         }
       }
       
-      // Wait for the full animation to complete
       await new Promise(resolve => setTimeout(resolve, 800));
       
       setFoundWords(prevFoundWords => {
@@ -122,7 +119,6 @@ const Index = () => {
         return newFoundWords;
       });
 
-      // Check if all words for this button are found
       const allWordsFound = wordPositions
         .filter(word => word[0].buttonId === buttonId)
         .every((_, idx) => foundWords[buttonId]?.[idx]);
@@ -154,6 +150,7 @@ const Index = () => {
               );
               const isLetter = wordIndex !== -1;
               const isHighlighted = wordIndex !== -1 && (hoveredWord === wordIndex || collectingButton === wordPositions[wordIndex][0].buttonId);
+              const isCollecting = collectingButton === (wordIndex !== -1 ? wordPositions[wordIndex][0].buttonId : null);
               
               return (
                 <span
@@ -161,7 +158,11 @@ const Index = () => {
                   key={`${i}-${j}`}
                   className={`${
                     isLetter 
-                      ? `text-cyber-blue cursor-pointer text-xl font-bold ${isHighlighted ? 'word-highlight animate-wiggle' : 'hover:animate-wiggle'}`
+                      ? `text-cyber-blue cursor-pointer text-xl font-bold ${
+                          isHighlighted ? 'word-highlight' : ''
+                        } ${
+                          isCollecting ? '' : 'hover:animate-wiggle'
+                        }`
                       : 'text-cyber-blue/30 text-lg'
                   } transition-all duration-200`}
                   onClick={() => isLetter && handleWordClick(wordIndex)}
