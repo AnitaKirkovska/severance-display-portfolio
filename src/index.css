@@ -59,6 +59,11 @@
   .scan-line {
     @apply fixed top-0 left-0 right-0 h-[2px] bg-cyber-blue/20 pointer-events-none;
   }
+
+  .floating-letters {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-cyber-blue text-xl;
+    animation: floatToBox 1s forwards;
+  }
 }
 
 @keyframes openBox {
@@ -82,14 +87,18 @@
   }
 }
 
-@keyframes moveToBox {
+@keyframes floatToBox {
   0% {
     opacity: 1;
-    transform: translateY(0) translateX(-50%);
+    transform: translate(-50%, -150%);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
   100% {
     opacity: 0;
-    transform: translateY(40px) translateX(-50%);
+    transform: translate(-50%, 50%);
   }
 }
 
@@ -119,4 +128,3 @@
     transform: translateY(100vh);
   }
 }
-

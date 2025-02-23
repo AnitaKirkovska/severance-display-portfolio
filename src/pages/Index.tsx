@@ -96,11 +96,9 @@ const Index = () => {
           [buttonId]: allLettersForButton
         }));
         
-        // Hide the floating letters after they "enter" the box
         setTimeout(() => {
           setShowLetters(null);
           
-          // Complete the animation and unlock the button
           setTimeout(() => {
             setAnimatingButton(null);
             setUnlockedButtons(prev => new Set([...prev, buttonId]));
@@ -173,11 +171,7 @@ const Index = () => {
           {navButtons.map((button) => (
             <div key={button.id} className="flex flex-col space-y-2 relative">
               {showLetters === button.id && foundLetters[button.id] && (
-                <div className="absolute left-1/2 -translate-x-1/2 animate-fadeIn" 
-                     style={{
-                       bottom: '120%',
-                       animation: 'moveToBox 1s forwards'
-                     }}>
+                <div className="floating-letters">
                   {foundLetters[button.id].join('')}
                 </div>
               )}
