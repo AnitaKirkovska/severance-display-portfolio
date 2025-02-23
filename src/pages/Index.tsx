@@ -18,6 +18,7 @@ const Index = () => {
   const [showLetters, setShowLetters] = useState<string | null>(null);
   const [floatingLetters, setFloatingLetters] = useState<Array<{ letter: string, style: React.CSSProperties }>>([]);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   const navButtons = [
@@ -171,6 +172,39 @@ const Index = () => {
     } else {
       setHoveredLetter(null);
     }
+    setHoveredCell({ row, col });
+  };
+
+  const getCellClassName = (i: number, j: number) => {
+    if (!hoveredCell) return 'grid-cell';
+    
+    const position = letterPositions.find(pos => pos.row === i && pos.col === j);
+    const isLetter = !!position;
+    const isHighlighted = position && (
+      hoveredLetter === position.buttonId || 
+      (hoveredButton === position.buttonId && unlockedButtons.has(position.buttonId))
+    );
+    
+    const distance = Math.max(
+      Math.abs(i - hoveredCell.row),
+      Math.abs(j - hoveredCell.col)
+    );
+
+    let classes = 'grid-cell';
+    
+    if (i === hoveredCell.row && j === hoveredCell.col) {
+      classes += ' grid-cell-hover';
+    } else if (distance <= 2) {
+      classes += distance === 1 ? ' grid-cell-neighbor-1' : ' grid-cell-neighbor-2';
+    }
+
+    if (isLetter) {
+      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'bg-cyber-blue/30' : 'hover:bg-cyber-blue/20'}`;
+    } else {
+      classes += ' text-cyber-blue/50';
+    }
+
+    return classes;
   };
 
   const calculateProgress = () => {
@@ -217,31 +251,18 @@ const Index = () => {
       <div className="cyber-grid pt-20">
         {grid.map((row, i) => (
           <div key={i} className="flex justify-center gap-2 md:gap-6">
-            {row.map((cell, j) => {
-              const position = letterPositions.find(pos => pos.row === i && pos.col === j);
-              const isLetter = !!position;
-              const isHighlighted = position && (
-                hoveredLetter === position.buttonId || 
-                (hoveredButton === position.buttonId && unlockedButtons.has(position.buttonId))
-              );
-              
-              return (
-                <span
-                  id={`cell-${i}-${j}`}
-                  key={`${i}-${j}`}
-                  className={`text-sm md:text-2xl w-6 h-6 md:w-12 md:h-12 flex items-center justify-center ${
-                    isLetter 
-                      ? `text-cyber-blue cursor-pointer ${isHighlighted ? 'bg-cyber-blue/30' : 'hover:bg-cyber-blue/20'}`
-                      : 'text-cyber-blue/50'
-                  }`}
-                  onClick={() => handleCellClick(i, j)}
-                  onMouseEnter={() => handleLetterHover(i, j)}
-                  onMouseLeave={() => setHoveredLetter(null)}
-                >
-                  {cell}
-                </span>
-              );
-            })}
+            {row.map((cell, j) => (
+              <span
+                id={`cell-${i}-${j}`}
+                key={`${i}-${j}`}
+                className={getCellClassName(i, j)}
+                onClick={() => handleCellClick(i, j)}
+                onMouseEnter={() => handleLetterHover(i, j)}
+                onMouseLeave={() => setHoveredCell(null)}
+              >
+                {cell}
+              </span>
+            ))}
           </div>
         ))}
       </div>

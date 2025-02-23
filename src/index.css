@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -68,6 +67,22 @@
   .floating-letters {
     @apply fixed text-cyber-blue text-base md:text-xl pointer-events-none;
     animation: floatToBox 1s forwards;
+  }
+
+  .grid-cell {
+    @apply text-sm md:text-2xl w-6 h-6 md:w-12 md:h-12 flex items-center justify-center transition-all duration-200;
+  }
+
+  .grid-cell-hover {
+    @apply scale-125 text-cyber-blue;
+  }
+
+  .grid-cell-neighbor-1 {
+    @apply scale-110 text-opacity-90;
+  }
+
+  .grid-cell-neighbor-2 {
+    @apply scale-105 text-opacity-80;
   }
 }
 
