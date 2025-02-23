@@ -23,9 +23,29 @@
            hover:bg-cyber-blue/10 transition-all duration-300 overflow-hidden;
   }
 
-  .cyber-button::before {
+  .cyber-button.unlocked {
+    @apply bg-cyber-blue/20;
+  }
+
+  .cyber-button.animating-box {
+    animation: openBox 0.5s forwards;
+  }
+
+  .cyber-button.animating-box::before,
+  .cyber-button.animating-box::after {
     content: '';
-    @apply absolute inset-0 bg-cyber-blue/20 translate-x-[-100%] hover:translate-x-0 transition-transform duration-300;
+    @apply absolute left-0 right-0 h-[1px] bg-cyber-blue;
+    animation: splitBorder 0.5s forwards;
+  }
+
+  .cyber-button.animating-box::before {
+    @apply top-0;
+    transform-origin: left top;
+  }
+
+  .cyber-button.animating-box::after {
+    @apply top-0;
+    transform-origin: right top;
   }
 
   .progress-bar {
@@ -40,3 +60,63 @@
     @apply fixed top-0 left-0 right-0 h-[2px] bg-cyber-blue/20 pointer-events-none;
   }
 }
+
+@keyframes openBox {
+  0% {
+    transform: perspective(800px) rotateX(0);
+  }
+  100% {
+    transform: perspective(800px) rotateX(30deg);
+  }
+}
+
+@keyframes splitBorder {
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-20px) rotate(15deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@keyframes moveToBox {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(40px) translateX(-50%);
+  }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    text-shadow: 0 0 4px #00F0FF;
+  }
+  50% { 
+    text-shadow: 0 0 8px #00F0FF;
+  }
+}
+
+@keyframes fadeIn {
+  0% { 
+    opacity: 0;
+  }
+  100% { 
+    opacity: 1;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+

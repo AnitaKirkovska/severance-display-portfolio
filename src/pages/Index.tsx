@@ -14,6 +14,8 @@ const Index = () => {
   const [grid, setGrid] = useState<string[][]>([]);
   const [foundLetters, setFoundLetters] = useState<{ [key: string]: string[] }>({});
   const [unlockedButtons, setUnlockedButtons] = useState<Set<string>>(new Set());
+  const [animatingButton, setAnimatingButton] = useState<string | null>(null);
+  const [showLetters, setShowLetters] = useState<string | null>(null);
 
   const navButtons = [
     { 
@@ -80,19 +82,31 @@ const Index = () => {
     if (clickedPosition) {
       const { buttonId } = clickedPosition;
       
-      // Get all letters associated with this button IN THEIR ORIGINAL ORDER
       const allLettersForButton = letterPositions
         .filter(pos => pos.buttonId === buttonId)
         .map(pos => pos.letter);
 
-      // Update foundLetters to include all letters for this button
-      setFoundLetters(prev => ({
-        ...prev,
-        [buttonId]: allLettersForButton
-      }));
-
-      // Unlock the button immediately since we're selecting all letters
-      setUnlockedButtons(prev => new Set([...prev, buttonId]));
+      setAnimatingButton(buttonId);
+      setShowLetters(buttonId);
+      
+      // Start the animation sequence
+      setTimeout(() => {
+        setFoundLetters(prev => ({
+          ...prev,
+          [buttonId]: allLettersForButton
+        }));
+        
+        // Hide the floating letters after they "enter" the box
+        setTimeout(() => {
+          setShowLetters(null);
+          
+          // Complete the animation and unlock the button
+          setTimeout(() => {
+            setAnimatingButton(null);
+            setUnlockedButtons(prev => new Set([...prev, buttonId]));
+          }, 500); // Time for the box to close
+        }, 1000); // Time for letters to enter the box
+      }, 500); // Time for the box to open
     }
   };
 
@@ -158,8 +172,12 @@ const Index = () => {
         <div className="grid grid-cols-4 gap-4 p-4">
           {navButtons.map((button) => (
             <div key={button.id} className="flex flex-col space-y-2 relative">
-              {foundLetters[button.id] && foundLetters[button.id].length > 0 && (
-                <div className="absolute -top-12 left-0 w-full p-2 bg-cyber-black/90 border border-cyber-blue rounded text-xs">
+              {showLetters === button.id && foundLetters[button.id] && (
+                <div className="absolute left-1/2 -translate-x-1/2 animate-fadeIn" 
+                     style={{
+                       bottom: '120%',
+                       animation: 'moveToBox 1s forwards'
+                     }}>
                   {foundLetters[button.id].join('')}
                 </div>
               )}
@@ -167,7 +185,11 @@ const Index = () => {
                 href={unlockedButtons.has(button.id) ? button.link : '#'}
                 target={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "_blank" : undefined}
                 rel={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "noopener noreferrer" : undefined}
-                className={`cyber-button ${!unlockedButtons.has(button.id) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`cyber-button relative ${
+                  !unlockedButtons.has(button.id) ? 'opacity-50 cursor-not-allowed' : ''
+                } ${animatingButton === button.id ? 'animating-box' : ''} ${
+                  unlockedButtons.has(button.id) ? 'unlocked' : ''
+                }`}
                 onMouseEnter={() => setHoveredButton(button.id)}
                 onMouseLeave={() => setHoveredButton(null)}
                 onClick={(e) => !unlockedButtons.has(button.id) && e.preventDefault()}
