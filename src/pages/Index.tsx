@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 
@@ -251,22 +252,26 @@ const Index = () => {
       </header>
 
       <div className="cyber-grid pt-20">
-        {grid.map((row, i) => (
-          <div key={i} className="flex justify-center gap-2 md:gap-6">
-            {row.map((cell, j) => (
-              <span
-                id={`cell-${i}-${j}`}
-                key={`${i}-${j}`}
-                className={getCellClassName(i, j)}
-                onClick={() => handleCellClick(i, j)}
-                onMouseEnter={() => handleLetterHover(i, j)}
-                onMouseLeave={() => setHoveredCell(null)}
-              >
-                {cell}
-              </span>
+        <div className="max-w-full overflow-x-auto px-2 md:px-0">
+          <div className="inline-block min-w-full">
+            {grid.map((row, i) => (
+              <div key={i} className="flex justify-center gap-1 sm:gap-2 md:gap-4 lg:gap-6">
+                {row.map((cell, j) => (
+                  <span
+                    id={`cell-${i}-${j}`}
+                    key={`${i}-${j}`}
+                    className={getCellClassName(i, j)}
+                    onClick={() => handleCellClick(i, j)}
+                    onMouseEnter={() => handleLetterHover(i, j)}
+                    onMouseLeave={() => setHoveredCell(null)}
+                  >
+                    {cell}
+                  </span>
+                ))}
+              </div>
             ))}
           </div>
-        ))}
+        </div>
       </div>
 
       {floatingLetters.map((item, index) => (
