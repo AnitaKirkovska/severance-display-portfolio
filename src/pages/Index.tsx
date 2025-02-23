@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface LetterPosition {
   row: number;
@@ -16,6 +16,8 @@ const Index = () => {
   const [unlockedButtons, setUnlockedButtons] = useState<Set<string>>(new Set());
   const [animatingButton, setAnimatingButton] = useState<string | null>(null);
   const [showLetters, setShowLetters] = useState<string | null>(null);
+  const [floatingLetters, setFloatingLetters] = useState<Array<{ letter: string, style: React.CSSProperties }>>([]);
+  const buttonRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   const navButtons = [
     { 
@@ -81,30 +83,53 @@ const Index = () => {
     
     if (clickedPosition) {
       const { buttonId } = clickedPosition;
+      const button = buttonRefs.current[buttonId];
       
+      if (!button) return;
+
+      const buttonRect = button.getBoundingClientRect();
       const allLettersForButton = letterPositions
         .filter(pos => pos.buttonId === buttonId)
-        .map(pos => pos.letter);
+        .map(pos => {
+          const element = document.getElementById(`cell-${pos.row}-${pos.col}`);
+          if (!element) return null;
+          const rect = element.getBoundingClientRect();
+          return {
+            letter: pos.letter,
+            style: {
+              '--start-x': `${rect.left}px`,
+              '--start-y': `${rect.top}px`,
+              '--end-x': `${buttonRect.left + buttonRect.width / 2}px`,
+              '--end-y': `${buttonRect.top}px`,
+            } as React.CSSProperties
+          };
+        })
+        .filter((item): item is { letter: string, style: React.CSSProperties } => item !== null);
 
+      setFloatingLetters(allLettersForButton);
       setAnimatingButton(buttonId);
-      setShowLetters(buttonId);
       
       // Start the animation sequence
       setTimeout(() => {
-        setFoundLetters(prev => ({
-          ...prev,
-          [buttonId]: allLettersForButton
-        }));
+        setShowLetters(buttonId);
+        setFloatingLetters([]);
         
         setTimeout(() => {
-          setShowLetters(null);
+          setFoundLetters(prev => ({
+            ...prev,
+            [buttonId]: allLettersForButton.map(item => item.letter)
+          }));
           
           setTimeout(() => {
-            setAnimatingButton(null);
-            setUnlockedButtons(prev => new Set([...prev, buttonId]));
-          }, 500); // Time for the box to close
-        }, 1000); // Time for letters to enter the box
-      }, 500); // Time for the box to open
+            setShowLetters(null);
+            
+            setTimeout(() => {
+              setAnimatingButton(null);
+              setUnlockedButtons(prev => new Set([...prev, buttonId]));
+            }, 500); // Time for the box to close
+          }, 1000); // Time for letters to enter the box
+        }, 500); // Wait for letters to reach the box
+      }, 1000); // Time for box to open and letters to float
     }
   };
 
@@ -133,6 +158,7 @@ const Index = () => {
               
               return (
                 <span
+                  id={`cell-${i}-${j}`}
                   key={`${i}-${j}`}
                   className={`${
                     isLetter 
@@ -150,6 +176,17 @@ const Index = () => {
           </div>
         ))}
       </div>
+
+      {/* Floating Letters */}
+      {floatingLetters.map((item, index) => (
+        <div
+          key={index}
+          className="floating-letters"
+          style={item.style}
+        >
+          {item.letter}
+        </div>
+      ))}
 
       {/* Scan Line Effect */}
       <div className="scan-line animate-scanline" />
@@ -187,6 +224,7 @@ const Index = () => {
                 onMouseEnter={() => setHoveredButton(button.id)}
                 onMouseLeave={() => setHoveredButton(null)}
                 onClick={(e) => !unlockedButtons.has(button.id) && e.preventDefault()}
+                ref={(el) => buttonRefs.current[button.id] = el}
               >
                 {button.label}
               </a>

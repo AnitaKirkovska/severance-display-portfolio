@@ -28,7 +28,7 @@
   }
 
   .cyber-button.animating-box {
-    animation: openBox 0.5s forwards;
+    animation: openBox 1s forwards;
     border-top-color: transparent;
   }
 
@@ -45,11 +45,11 @@
   }
 
   .cyber-button.animating-box::before {
-    animation: splitBorderLeft 0.5s forwards;
+    animation: splitBorderLeft 1s forwards;
   }
 
   .cyber-button.animating-box::after {
-    animation: splitBorderRight 0.5s forwards;
+    animation: splitBorderRight 1s forwards;
   }
 
   .progress-bar {
@@ -65,7 +65,7 @@
   }
 
   .floating-letters {
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-cyber-blue text-xl;
+    @apply fixed text-cyber-blue text-xl pointer-events-none;
     animation: floatToBox 1s forwards;
   }
 }
@@ -106,15 +106,15 @@
 @keyframes floatToBox {
   0% {
     opacity: 1;
-    transform: translate(-50%, -150%);
+    transform: translate(var(--start-x), var(--start-y));
   }
-  50% {
+  75% {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(var(--end-x), var(--end-y));
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, 50%);
+    transform: translate(var(--end-x), calc(var(--end-y) + 20px));
   }
 }
 
