@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 
 interface LetterPosition {
@@ -44,6 +43,31 @@ const Index = () => {
   ];
 
   const letterPositions: LetterPosition[] = [
+    { row: 2, col: 3, letter: 'A', buttonId: 'about' },
+    { row: 2, col: 4, letter: 'B', buttonId: 'about' },
+    { row: 2, col: 5, letter: 'O', buttonId: 'about' },
+    { row: 2, col: 6, letter: 'U', buttonId: 'about' },
+    { row: 2, col: 7, letter: 'T', buttonId: 'about' },
+    { row: 2, col: 9, letter: 'M', buttonId: 'about' },
+    { row: 2, col: 10, letter: 'E', buttonId: 'about' },
+    
+    { row: 3, col: 3, letter: 'L', buttonId: 'linkedin' },
+    { row: 3, col: 4, letter: 'I', buttonId: 'linkedin' },
+    { row: 3, col: 5, letter: 'N', buttonId: 'linkedin' },
+    { row: 3, col: 6, letter: 'K', buttonId: 'linkedin' },
+    { row: 3, col: 7, letter: 'E', buttonId: 'linkedin' },
+    { row: 3, col: 8, letter: 'D', buttonId: 'linkedin' },
+    { row: 3, col: 10, letter: 'I', buttonId: 'linkedin' },
+    { row: 3, col: 11, letter: 'N', buttonId: 'linkedin' },
+    
+    { row: 4, col: 3, letter: 'A', buttonId: 'article' },
+    { row: 4, col: 4, letter: 'R', buttonId: 'article' },
+    { row: 4, col: 5, letter: 'T', buttonId: 'article' },
+    { row: 4, col: 6, letter: 'I', buttonId: 'article' },
+    { row: 4, col: 7, letter: 'C', buttonId: 'article' },
+    { row: 4, col: 8, letter: 'L', buttonId: 'article' },
+    { row: 4, col: 9, letter: 'E', buttonId: 'article' },
+    
     { row: 5, col: 10, letter: 'S', buttonId: 'call' },
     { row: 5, col: 12, letter: 'E', buttonId: 'call' },
     { row: 5, col: 14, letter: 'N', buttonId: 'call' },
