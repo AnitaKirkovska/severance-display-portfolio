@@ -9,6 +9,7 @@ interface LetterPosition {
 
 const Index = () => {
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+  const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
   const [grid, setGrid] = useState<string[][]>([]);
   const [foundLetters, setFoundLetters] = useState<{ [key: string]: string[] }>({});
   const [unlockedButtons, setUnlockedButtons] = useState<Set<string>>(new Set());
@@ -98,6 +99,15 @@ const Index = () => {
     }
   };
 
+  const handleLetterHover = (row: number, col: number) => {
+    const hoveredPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
+    if (hoveredPosition) {
+      setHoveredLetter(hoveredPosition.buttonId);
+    } else {
+      setHoveredLetter(null);
+    }
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
       {/* Background Grid */}
@@ -105,16 +115,21 @@ const Index = () => {
         {grid.map((row, i) => (
           <div key={i} className="flex justify-center gap-2">
             {row.map((cell, j) => {
-              const isLetter = letterPositions.some(pos => pos.row === i && pos.col === j);
+              const position = letterPositions.find(pos => pos.row === i && pos.col === j);
+              const isLetter = !!position;
+              const isHighlighted = position && hoveredLetter === position.buttonId;
+              
               return (
                 <span
                   key={`${i}-${j}`}
                   className={`${
                     isLetter 
-                      ? 'text-cyber-blue cursor-pointer hover:bg-cyber-blue/20' 
-                      : 'text-cyber-blue/30'
+                      ? `text-cyber-blue cursor-pointer ${isHighlighted ? 'bg-cyber-blue/30' : 'hover:bg-cyber-blue/20'}`
+                      : 'text-cyber-blue/50'
                   }`}
                   onClick={() => handleCellClick(i, j)}
+                  onMouseEnter={() => handleLetterHover(i, j)}
+                  onMouseLeave={() => setHoveredLetter(null)}
                 >
                   {cell}
                 </span>

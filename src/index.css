@@ -11,7 +11,7 @@
 
 @layer components {
   .cyber-grid {
-    @apply fixed inset-0 flex flex-col items-center justify-center opacity-30 pointer-events-auto select-none gap-2;
+    @apply fixed inset-0 flex flex-col items-center justify-center opacity-70 pointer-events-auto select-none gap-2;
   }
   
   .cyber-grid span {
