@@ -43,39 +43,43 @@ const Index = () => {
   ];
 
   const letterPositions: LetterPosition[] = [
-    { row: 2, col: 3, letter: 'A', buttonId: 'about' },
-    { row: 2, col: 4, letter: 'B', buttonId: 'about' },
-    { row: 2, col: 5, letter: 'O', buttonId: 'about' },
-    { row: 2, col: 6, letter: 'U', buttonId: 'about' },
-    { row: 2, col: 7, letter: 'T', buttonId: 'about' },
-    { row: 2, col: 9, letter: 'M', buttonId: 'about' },
-    { row: 2, col: 10, letter: 'E', buttonId: 'about' },
+    // ABOUT ME - Spread out horizontally
+    { row: 2, col: 4, letter: 'A', buttonId: 'about' },
+    { row: 2, col: 6, letter: 'B', buttonId: 'about' },
+    { row: 2, col: 8, letter: 'O', buttonId: 'about' },
+    { row: 2, col: 10, letter: 'U', buttonId: 'about' },
+    { row: 2, col: 12, letter: 'T', buttonId: 'about' },
+    { row: 2, col: 14, letter: 'M', buttonId: 'about' },
+    { row: 2, col: 16, letter: 'E', buttonId: 'about' },
     
-    { row: 3, col: 3, letter: 'L', buttonId: 'linkedin' },
-    { row: 3, col: 4, letter: 'I', buttonId: 'linkedin' },
-    { row: 3, col: 5, letter: 'N', buttonId: 'linkedin' },
-    { row: 3, col: 6, letter: 'K', buttonId: 'linkedin' },
-    { row: 3, col: 7, letter: 'E', buttonId: 'linkedin' },
-    { row: 3, col: 8, letter: 'D', buttonId: 'linkedin' },
-    { row: 3, col: 10, letter: 'I', buttonId: 'linkedin' },
-    { row: 3, col: 11, letter: 'N', buttonId: 'linkedin' },
+    // LINKED IN - Spread out diagonally
+    { row: 4, col: 4, letter: 'L', buttonId: 'linkedin' },
+    { row: 4, col: 6, letter: 'I', buttonId: 'linkedin' },
+    { row: 4, col: 8, letter: 'N', buttonId: 'linkedin' },
+    { row: 4, col: 10, letter: 'K', buttonId: 'linkedin' },
+    { row: 4, col: 12, letter: 'E', buttonId: 'linkedin' },
+    { row: 4, col: 14, letter: 'D', buttonId: 'linkedin' },
+    { row: 4, col: 16, letter: 'I', buttonId: 'linkedin' },
+    { row: 4, col: 18, letter: 'N', buttonId: 'linkedin' },
     
-    { row: 4, col: 3, letter: 'A', buttonId: 'article' },
-    { row: 4, col: 4, letter: 'R', buttonId: 'article' },
-    { row: 4, col: 5, letter: 'T', buttonId: 'article' },
-    { row: 4, col: 6, letter: 'I', buttonId: 'article' },
-    { row: 4, col: 7, letter: 'C', buttonId: 'article' },
-    { row: 4, col: 8, letter: 'L', buttonId: 'article' },
-    { row: 4, col: 9, letter: 'E', buttonId: 'article' },
+    // ARTICLE - Spread out horizontally
+    { row: 6, col: 4, letter: 'A', buttonId: 'article' },
+    { row: 6, col: 6, letter: 'R', buttonId: 'article' },
+    { row: 6, col: 8, letter: 'T', buttonId: 'article' },
+    { row: 6, col: 10, letter: 'I', buttonId: 'article' },
+    { row: 6, col: 12, letter: 'C', buttonId: 'article' },
+    { row: 6, col: 14, letter: 'L', buttonId: 'article' },
+    { row: 6, col: 16, letter: 'E', buttonId: 'article' },
     
-    { row: 5, col: 10, letter: 'S', buttonId: 'call' },
-    { row: 5, col: 12, letter: 'E', buttonId: 'call' },
-    { row: 5, col: 14, letter: 'N', buttonId: 'call' },
-    { row: 5, col: 16, letter: 'D', buttonId: 'call' },
-    { row: 6, col: 10, letter: 'M', buttonId: 'call' },
-    { row: 6, col: 12, letter: 'A', buttonId: 'call' },
-    { row: 6, col: 14, letter: 'I', buttonId: 'call' },
-    { row: 6, col: 16, letter: 'L', buttonId: 'call' },
+    // SEND MAIL - Moved to bottom and spread out
+    { row: 8, col: 4, letter: 'S', buttonId: 'call' },
+    { row: 8, col: 6, letter: 'E', buttonId: 'call' },
+    { row: 8, col: 8, letter: 'N', buttonId: 'call' },
+    { row: 8, col: 10, letter: 'D', buttonId: 'call' },
+    { row: 9, col: 4, letter: 'M', buttonId: 'call' },
+    { row: 9, col: 6, letter: 'A', buttonId: 'call' },
+    { row: 9, col: 8, letter: 'I', buttonId: 'call' },
+    { row: 9, col: 10, letter: 'L', buttonId: 'call' },
   ];
 
   useEffect(() => {
@@ -166,12 +170,19 @@ const Index = () => {
     }
   };
 
+  // Calculate the total progress (25% per phrase)
+  const calculateProgress = () => {
+    const totalPhrases = navButtons.length;
+    const unlockedCount = unlockedButtons.size;
+    return (unlockedCount / totalPhrases) * 100;
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
       {/* Background Grid */}
       <div className="cyber-grid">
         {grid.map((row, i) => (
-          <div key={i} className="flex justify-center gap-2">
+          <div key={i} className="flex justify-center gap-4">
             {row.map((cell, j) => {
               const position = letterPositions.find(pos => pos.row === i && pos.col === j);
               const isLetter = !!position;
@@ -215,14 +226,22 @@ const Index = () => {
       {/* Scan Line Effect */}
       <div className="scan-line animate-scanline" />
       
-      {/* Header */}
+      {/* Header with Progress Bar */}
       <header className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center border-b border-cyber-blue/20">
         <div className="flex items-center space-x-4">
           <h1 className="text-2xl font-bold animate-glow">Anita K.</h1>
           <span className="text-sm opacity-50">FOUNDING GROWTH LEAD</span>
         </div>
-        <div className="rounded-full border border-cyber-blue p-2 animate-glow">
-          <span className="text-sm">ANITA</span>
+        <div className="flex items-center space-x-4">
+          <div className="w-48 bg-cyber-blue/20 h-2 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-cyber-blue transition-all duration-1000 ease-out"
+              style={{ width: `${calculateProgress()}%` }}
+            />
+          </div>
+          <div className="rounded-full border border-cyber-blue p-2 animate-glow">
+            <span className="text-sm">ANITA</span>
+          </div>
         </div>
       </header>
 
