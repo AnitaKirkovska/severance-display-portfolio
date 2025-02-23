@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 
@@ -87,8 +86,8 @@ const Index = () => {
 
   useEffect(() => {
     const generateGrid = () => {
-      const rows = 12; // Reduced from 15
-      const cols = 12; // Reduced from 25
+      const rows = 12;
+      const cols = 20;
       const newGrid: string[][] = [];
       
       for (let i = 0; i < rows; i++) {
@@ -142,7 +141,6 @@ const Index = () => {
       setFloatingLetters(allLettersForButton);
       setAnimatingButton(buttonId);
       
-      // Start the animation sequence
       setTimeout(() => {
         setShowLetters(buttonId);
         setFloatingLetters([]);
@@ -159,10 +157,10 @@ const Index = () => {
             setTimeout(() => {
               setAnimatingButton(null);
               setUnlockedButtons(prev => new Set([...prev, buttonId]));
-            }, 500); // Time for the box to close
-          }, 1000); // Time for letters to enter the box
-        }, 500); // Wait for letters to reach the box
-      }, 1000); // Time for box to open and letters to float
+            }, 500);
+          }, 1000);
+        }, 500);
+      }, 1000);
     }
   };
 
@@ -175,21 +173,19 @@ const Index = () => {
     }
   };
 
-  // Calculate the total progress (25% per phrase)
   const calculateProgress = () => {
     const totalPhrases = navButtons.length;
     const unlockedCount = unlockedButtons.size;
     return (unlockedCount / totalPhrases) * 100;
   };
 
-  // Check if all buttons are unlocked and trigger confetti
   useEffect(() => {
     const progress = calculateProgress();
     if (progress === 100) {
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
-      }, 5000); // Stop confetti after 5 seconds
+      }, 5000);
     }
   }, [unlockedButtons]);
 
@@ -197,7 +193,6 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
       {showConfetti && <Confetti />}
       
-      {/* Header with Progress Bar */}
       <header className="fixed top-0 left-0 right-0 p-2 md:p-4 flex flex-col md:flex-row justify-between items-center border-b border-cyber-blue/20 bg-cyber-black/80 backdrop-blur-md z-50">
         <div className="flex items-center space-x-2 md:space-x-4 mb-2 md:mb-0">
           <h1 className="text-xl md:text-2xl font-bold animate-glow">Anita K.</h1>
@@ -219,10 +214,9 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Background Grid */}
       <div className="cyber-grid pt-20">
         {grid.map((row, i) => (
-          <div key={i} className="flex justify-center gap-2 md:gap-4">
+          <div key={i} className="flex justify-center gap-2 md:gap-6">
             {row.map((cell, j) => {
               const position = letterPositions.find(pos => pos.row === i && pos.col === j);
               const isLetter = !!position;
@@ -235,7 +229,7 @@ const Index = () => {
                 <span
                   id={`cell-${i}-${j}`}
                   key={`${i}-${j}`}
-                  className={`text-sm md:text-xl w-6 h-6 md:w-8 md:h-8 flex items-center justify-center ${
+                  className={`text-sm md:text-2xl w-6 h-6 md:w-12 md:h-12 flex items-center justify-center ${
                     isLetter 
                       ? `text-cyber-blue cursor-pointer ${isHighlighted ? 'bg-cyber-blue/30' : 'hover:bg-cyber-blue/20'}`
                       : 'text-cyber-blue/50'
@@ -252,7 +246,6 @@ const Index = () => {
         ))}
       </div>
 
-      {/* Floating Letters */}
       {floatingLetters.map((item, index) => (
         <div
           key={index}
@@ -263,10 +256,8 @@ const Index = () => {
         </div>
       ))}
 
-      {/* Scan Line Effect */}
       <div className="scan-line animate-scanline" />
       
-      {/* Main Navigation */}
       <main className="fixed bottom-4 md:bottom-20 left-1/2 -translate-x-1/2 w-full px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-4xl mx-auto">
           {navButtons.map((button) => (

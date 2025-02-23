@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +11,7 @@
 
 @layer components {
   .cyber-grid {
-    @apply fixed inset-0 flex flex-col items-center justify-center opacity-70 pointer-events-auto select-none gap-1 md:gap-2;
+    @apply fixed inset-0 flex flex-col items-center justify-center opacity-70 pointer-events-auto select-none gap-1 md:gap-4;
   }
   
   .cyber-button {
