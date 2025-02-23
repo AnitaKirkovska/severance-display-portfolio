@@ -1,22 +1,18 @@
-
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 interface LetterPosition {
   row: number;
   col: number;
   letter: string;
   buttonId: string;
-  wordIndex: number;
 }
 
 const Index = () => {
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
-  const [hoveredWord, setHoveredWord] = useState<number | null>(null);
+  const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
   const [grid, setGrid] = useState<string[][]>([]);
-  const [foundWords, setFoundWords] = useState<{ [key: string]: boolean[] }>({});
+  const [foundLetters, setFoundLetters] = useState<{ [key: string]: string[] }>({});
   const [unlockedButtons, setUnlockedButtons] = useState<Set<string>>(new Set());
-  const [collectingButton, setCollectingButton] = useState<string | null>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
 
   const navButtons = [
     { 
@@ -42,19 +38,15 @@ const Index = () => {
     },
   ];
 
-  const wordPositions = [
-    [
-      { row: 5, col: 10, letter: 'S', buttonId: 'call', wordIndex: 0 },
-      { row: 5, col: 12, letter: 'E', buttonId: 'call', wordIndex: 0 },
-      { row: 5, col: 14, letter: 'N', buttonId: 'call', wordIndex: 0 },
-      { row: 5, col: 16, letter: 'D', buttonId: 'call', wordIndex: 0 },
-    ],
-    [
-      { row: 6, col: 10, letter: 'M', buttonId: 'call', wordIndex: 1 },
-      { row: 6, col: 12, letter: 'A', buttonId: 'call', wordIndex: 1 },
-      { row: 6, col: 14, letter: 'I', buttonId: 'call', wordIndex: 1 },
-      { row: 6, col: 16, letter: 'L', buttonId: 'call', wordIndex: 1 },
-    ],
+  const letterPositions: LetterPosition[] = [
+    { row: 5, col: 10, letter: 'S', buttonId: 'call' },
+    { row: 5, col: 12, letter: 'E', buttonId: 'call' },
+    { row: 5, col: 14, letter: 'N', buttonId: 'call' },
+    { row: 5, col: 16, letter: 'D', buttonId: 'call' },
+    { row: 6, col: 10, letter: 'M', buttonId: 'call' },
+    { row: 6, col: 12, letter: 'A', buttonId: 'call' },
+    { row: 6, col: 14, letter: 'I', buttonId: 'call' },
+    { row: 6, col: 16, letter: 'L', buttonId: 'call' },
   ];
 
   useEffect(() => {
@@ -71,7 +63,7 @@ const Index = () => {
         newGrid.push(row);
       }
 
-      wordPositions.flat().forEach(({ row, col, letter }) => {
+      letterPositions.forEach(({ row, col, letter }) => {
         newGrid[row][col] = letter;
       });
       
@@ -81,93 +73,63 @@ const Index = () => {
     generateGrid();
   }, []);
 
-  const handleWordClick = async (wordIndex: number) => {
-    const wordLetters = wordPositions[wordIndex];
-    const buttonId = wordLetters[0].buttonId;
+  const handleCellClick = (row: number, col: number) => {
+    const clickedPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
     
-    if (!foundWords[buttonId]?.[wordIndex]) {
-      setCollectingButton(buttonId);
+    if (clickedPosition) {
+      const { letter, buttonId } = clickedPosition;
+      const currentFoundLetters = foundLetters[buttonId] || [];
       
-      for (let i = 0; i < wordLetters.length; i++) {
-        const { row, col } = wordLetters[i];
-        const cellElement = document.getElementById(`cell-${row}-${col}`);
-        const buttonElement = document.getElementById(`button-${buttonId}`);
-        
-        if (cellElement && buttonElement) {
-          const cellRect = cellElement.getBoundingClientRect();
-          const buttonRect = buttonElement.getBoundingClientRect();
-          
-          const moveX = buttonRect.left - cellRect.left;
-          const moveY = buttonRect.top - cellRect.top;
-          
-          cellElement.style.setProperty('--move-x', `${moveX}px`);
-          cellElement.style.setProperty('--move-y', `${moveY}px`);
-          cellElement.classList.add('collecting-word');
-          
-          await new Promise(resolve => setTimeout(resolve, 100));
+      if (!currentFoundLetters.includes(letter)) {
+        const updatedFoundLetters = {
+          ...foundLetters,
+          [buttonId]: [...currentFoundLetters, letter].sort()
+        };
+        setFoundLetters(updatedFoundLetters);
+
+        const allLettersForButton = letterPositions
+          .filter(pos => pos.buttonId === buttonId)
+          .map(pos => pos.letter)
+          .sort();
+
+        if (updatedFoundLetters[buttonId].join('') === allLettersForButton.join('')) {
+          setUnlockedButtons(prev => new Set([...prev, buttonId]));
         }
       }
-      
-      await new Promise(resolve => setTimeout(resolve, 800));
-      
-      setFoundWords(prevFoundWords => {
-        const newFoundWords = { ...prevFoundWords };
-        if (!newFoundWords[buttonId]) {
-          newFoundWords[buttonId] = [];
-        }
-        newFoundWords[buttonId][wordIndex] = true;
-        return newFoundWords;
-      });
-
-      const allWordsFound = wordPositions
-        .filter(word => word[0].buttonId === buttonId)
-        .every((_, idx) => foundWords[buttonId]?.[idx]);
-
-      if (allWordsFound) {
-        setUnlockedButtons(prev => new Set([...prev, buttonId]));
-      }
-      
-      setCollectingButton(null);
     }
   };
 
   const handleLetterHover = (row: number, col: number) => {
-    const wordPosition = wordPositions.findIndex(word =>
-      word.some(letter => letter.row === row && letter.col === col)
-    );
-    setHoveredWord(wordPosition !== -1 ? wordPosition : null);
+    const hoveredPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
+    if (hoveredPosition) {
+      setHoveredLetter(hoveredPosition.buttonId);
+    } else {
+      setHoveredLetter(null);
+    }
   };
 
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
       {/* Background Grid */}
-      <div className="cyber-grid" ref={gridRef}>
+      <div className="cyber-grid">
         {grid.map((row, i) => (
           <div key={i} className="flex justify-center gap-2">
             {row.map((cell, j) => {
-              const wordIndex = wordPositions.findIndex(word =>
-                word.some(letter => letter.row === i && letter.col === j)
-              );
-              const isLetter = wordIndex !== -1;
-              const isHighlighted = wordIndex !== -1 && hoveredWord === wordIndex;
-              const isCollecting = wordIndex !== -1 && collectingButton === wordPositions[wordIndex][0].buttonId;
+              const position = letterPositions.find(pos => pos.row === i && pos.col === j);
+              const isLetter = !!position;
+              const isHighlighted = position && hoveredLetter === position.buttonId;
               
               return (
                 <span
-                  id={`cell-${i}-${j}`}
                   key={`${i}-${j}`}
                   className={`${
                     isLetter 
-                      ? `text-cyber-blue cursor-pointer text-xl font-bold ${
-                          isHighlighted ? 'word-highlight' : ''
-                        } ${
-                          !isCollecting ? 'hover:animate-wiggle' : ''
-                        }`
-                      : 'text-cyber-blue/30 text-lg'
-                  } transition-all duration-200`}
-                  onClick={() => isLetter && handleWordClick(wordIndex)}
+                      ? `text-cyber-blue cursor-pointer ${isHighlighted ? 'bg-cyber-blue/30' : 'hover:bg-cyber-blue/20'}`
+                      : 'text-cyber-blue/50'
+                  }`}
+                  onClick={() => handleCellClick(i, j)}
                   onMouseEnter={() => handleLetterHover(i, j)}
-                  onMouseLeave={() => setHoveredWord(null)}
+                  onMouseLeave={() => setHoveredLetter(null)}
                 >
                   {cell}
                 </span>
@@ -196,12 +158,16 @@ const Index = () => {
         <div className="grid grid-cols-4 gap-4 p-4">
           {navButtons.map((button) => (
             <div key={button.id} className="flex flex-col space-y-2 relative">
+              {foundLetters[button.id] && foundLetters[button.id].length > 0 && (
+                <div className="absolute -top-12 left-0 w-full p-2 bg-cyber-black/90 border border-cyber-blue rounded text-xs">
+                  {foundLetters[button.id].join('')}
+                </div>
+              )}
               <a 
-                id={`button-${button.id}`}
                 href={unlockedButtons.has(button.id) ? button.link : '#'}
                 target={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "_blank" : undefined}
                 rel={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "noopener noreferrer" : undefined}
-                className={`cyber-button ${collectingButton === button.id ? 'collecting' : ''} ${unlockedButtons.has(button.id) ? 'unlocked' : 'opacity-50 cursor-not-allowed'}`}
+                className={`cyber-button ${!unlockedButtons.has(button.id) ? 'opacity-50 cursor-not-allowed' : ''}`}
                 onMouseEnter={() => setHoveredButton(button.id)}
                 onMouseLeave={() => setHoveredButton(null)}
                 onClick={(e) => !unlockedButtons.has(button.id) && e.preventDefault()}

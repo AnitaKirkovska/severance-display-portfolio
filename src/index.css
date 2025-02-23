@@ -15,38 +15,17 @@
   }
   
   .cyber-grid span {
-    @apply w-8 h-8 flex items-center justify-center transition-all duration-200;
+    @apply w-8 h-8 flex items-center justify-center text-xl transition-colors duration-200;
   }
   
   .cyber-button {
     @apply relative px-8 py-3 bg-transparent border border-cyber-blue text-cyber-blue 
-           transition-all duration-300 overflow-hidden;
-  }
-
-  .cyber-button::before,
-  .cyber-button::after {
-    @apply absolute left-0 w-full h-0.5 bg-cyber-blue transform scale-x-0 transition-transform duration-500;
-    content: '';
+           hover:bg-cyber-blue/10 transition-all duration-300 overflow-hidden;
   }
 
   .cyber-button::before {
-    @apply top-0 origin-left;
-  }
-
-  .cyber-button::after {
-    @apply top-0 origin-right;
-  }
-
-  .cyber-button.collecting::before {
-    @apply scale-x-100;
-  }
-
-  .cyber-button.collecting::after {
-    @apply scale-x-100;
-  }
-
-  .cyber-button.unlocked {
-    @apply bg-cyber-blue text-cyber-black hover:bg-cyber-blue/90;
+    content: '';
+    @apply absolute inset-0 bg-cyber-blue/20 translate-x-[-100%] hover:translate-x-0 transition-transform duration-300;
   }
 
   .progress-bar {
@@ -60,27 +39,4 @@
   .scan-line {
     @apply fixed top-0 left-0 right-0 h-[2px] bg-cyber-blue/20 pointer-events-none;
   }
-
-  .word-highlight {
-    @apply bg-cyber-blue/30;
-  }
-}
-
-@keyframes collectWord {
-  0% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-    opacity: 1;
-  }
-  50% {
-    transform: translate(calc(var(--move-x) * 0.5), calc(var(--move-y) * 0.5)) scale(0.8) rotate(180deg);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate(var(--move-x), var(--move-y)) scale(0) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-.collecting-word {
-  animation: collectWord 1s forwards;
 }
