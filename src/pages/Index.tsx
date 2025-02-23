@@ -80,11 +80,10 @@ const Index = () => {
     if (clickedPosition) {
       const { buttonId } = clickedPosition;
       
-      // Get all letters associated with this button
+      // Get all letters associated with this button IN THEIR ORIGINAL ORDER
       const allLettersForButton = letterPositions
         .filter(pos => pos.buttonId === buttonId)
-        .map(pos => pos.letter)
-        .sort();
+        .map(pos => pos.letter);
 
       // Update foundLetters to include all letters for this button
       setFoundLetters(prev => ({
