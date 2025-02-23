@@ -109,19 +109,19 @@ const Index = () => {
       // Wait for animation to complete
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      const updatedFoundWords = {
-        ...foundWords,
-        [buttonId]: {
-          ...(foundWords[buttonId] || {}),
-          [wordIndex]: true
+      setFoundWords(prevFoundWords => {
+        const newFoundWords = { ...prevFoundWords };
+        if (!newFoundWords[buttonId]) {
+          newFoundWords[buttonId] = [];
         }
-      };
-      setFoundWords(updatedFoundWords);
+        newFoundWords[buttonId][wordIndex] = true;
+        return newFoundWords;
+      });
 
       // Check if all words for this button are found
       const allWordsFound = wordPositions
         .filter(word => word[0].buttonId === buttonId)
-        .every((_, idx) => updatedFoundWords[buttonId]?.[idx]);
+        .every((_, idx) => foundWords[buttonId]?.[idx]);
 
       if (allWordsFound) {
         setUnlockedButtons(prev => new Set([...prev, buttonId]));
@@ -225,3 +225,4 @@ const Index = () => {
 };
 
 export default Index;
+
