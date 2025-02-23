@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 
 interface LetterPosition {
@@ -77,25 +78,22 @@ const Index = () => {
     const clickedPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
     
     if (clickedPosition) {
-      const { letter, buttonId } = clickedPosition;
-      const currentFoundLetters = foundLetters[buttonId] || [];
+      const { buttonId } = clickedPosition;
       
-      if (!currentFoundLetters.includes(letter)) {
-        const updatedFoundLetters = {
-          ...foundLetters,
-          [buttonId]: [...currentFoundLetters, letter].sort()
-        };
-        setFoundLetters(updatedFoundLetters);
+      // Get all letters associated with this button
+      const allLettersForButton = letterPositions
+        .filter(pos => pos.buttonId === buttonId)
+        .map(pos => pos.letter)
+        .sort();
 
-        const allLettersForButton = letterPositions
-          .filter(pos => pos.buttonId === buttonId)
-          .map(pos => pos.letter)
-          .sort();
+      // Update foundLetters to include all letters for this button
+      setFoundLetters(prev => ({
+        ...prev,
+        [buttonId]: allLettersForButton
+      }));
 
-        if (updatedFoundLetters[buttonId].join('') === allLettersForButton.join('')) {
-          setUnlockedButtons(prev => new Set([...prev, buttonId]));
-        }
-      }
+      // Unlock the button immediately since we're selecting all letters
+      setUnlockedButtons(prev => new Set([...prev, buttonId]));
     }
   };
 
@@ -117,7 +115,10 @@ const Index = () => {
             {row.map((cell, j) => {
               const position = letterPositions.find(pos => pos.row === i && pos.col === j);
               const isLetter = !!position;
-              const isHighlighted = position && hoveredLetter === position.buttonId;
+              const isHighlighted = position && (
+                hoveredLetter === position.buttonId || 
+                (hoveredButton === position.buttonId && unlockedButtons.has(position.buttonId))
+              );
               
               return (
                 <span
