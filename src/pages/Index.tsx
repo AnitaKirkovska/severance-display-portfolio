@@ -75,7 +75,6 @@ const Index = () => {
       const cols = 35;
       const newGrid: string[][] = [];
       
-      // Fill grid with random numbers
       for (let i = 0; i < rows; i++) {
         const row: string[] = [];
         for (let j = 0; j < cols; j++) {
@@ -84,7 +83,6 @@ const Index = () => {
         newGrid.push(row);
       }
 
-      // Place letters in predetermined positions
       letterPositions.forEach(({ row, col, letter }) => {
         newGrid[row][col] = letter;
       });
@@ -127,23 +125,30 @@ const Index = () => {
       {/* Background Grid */}
       <div className="cyber-grid">
         {grid.map((row, i) => (
-          <div key={i} className="flex">
-            {row.map((cell, j) => (
-              <span
-                key={`${i}-${j}`}
-                className={`text-xs ${letterPositions.some(pos => pos.row === i && pos.col === j) ? 'cursor-pointer hover:text-cyber-blue' : 'opacity-50'}`}
-                onClick={() => handleCellClick(i, j)}
-              >
-                {cell}
-              </span>
-            ))}
+          <div key={i} className="flex justify-center gap-1">
+            {row.map((cell, j) => {
+              const isLetter = letterPositions.some(pos => pos.row === i && pos.col === j);
+              return (
+                <span
+                  key={`${i}-${j}`}
+                  className={`${
+                    isLetter 
+                      ? 'text-cyber-blue cursor-pointer hover:bg-cyber-blue/20' 
+                      : 'text-cyber-blue/30'
+                  }`}
+                  onClick={() => handleCellClick(i, j)}
+                >
+                  {cell}
+                </span>
+              );
+            })}
           </div>
         ))}
       </div>
 
       {/* Scan Line Effect */}
       <div className="scan-line animate-scanline" />
-
+      
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 p-4 flex justify-between items-center border-b border-cyber-blue/20">
         <div className="flex items-center space-x-4">
