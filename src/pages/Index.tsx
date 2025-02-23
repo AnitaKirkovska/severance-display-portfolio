@@ -88,8 +88,9 @@ const Index = () => {
     if (!foundWords[buttonId]?.[wordIndex]) {
       setCollectingButton(buttonId);
       
-      // Animate all letters in the word
-      for (const { row, col } of wordLetters) {
+      // Animate each letter in sequence
+      for (let i = 0; i < wordLetters.length; i++) {
+        const { row, col } = wordLetters[i];
         const cellElement = document.getElementById(`cell-${row}-${col}`);
         const buttonElement = document.getElementById(`button-${buttonId}`);
         
@@ -103,11 +104,14 @@ const Index = () => {
           cellElement.style.setProperty('--move-x', `${moveX}px`);
           cellElement.style.setProperty('--move-y', `${moveY}px`);
           cellElement.classList.add('collecting-word');
+          
+          // Add a small delay between each letter
+          await new Promise(resolve => setTimeout(resolve, 100));
         }
       }
       
-      // Wait for animation to complete
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Wait for the full animation to complete
+      await new Promise(resolve => setTimeout(resolve, 800));
       
       setFoundWords(prevFoundWords => {
         const newFoundWords = { ...prevFoundWords };
@@ -157,9 +161,9 @@ const Index = () => {
                   key={`${i}-${j}`}
                   className={`${
                     isLetter 
-                      ? `text-cyber-blue cursor-pointer ${isHighlighted ? 'word-highlight' : 'hover:bg-cyber-blue/20'}`
-                      : 'text-cyber-blue/50'
-                  }`}
+                      ? `text-cyber-blue cursor-pointer text-xl font-bold ${isHighlighted ? 'word-highlight animate-wiggle' : 'hover:animate-wiggle'}`
+                      : 'text-cyber-blue/30 text-lg'
+                  } transition-all duration-200`}
                   onClick={() => isLetter && handleWordClick(wordIndex)}
                   onMouseEnter={() => handleLetterHover(i, j)}
                   onMouseLeave={() => setHoveredWord(null)}
@@ -225,4 +229,3 @@ const Index = () => {
 };
 
 export default Index;
-

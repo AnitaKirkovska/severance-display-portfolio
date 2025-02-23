@@ -15,7 +15,7 @@
   }
   
   .cyber-grid span {
-    @apply w-8 h-8 flex items-center justify-center text-xl transition-all duration-200;
+    @apply w-8 h-8 flex items-center justify-center transition-all duration-200;
   }
   
   .cyber-button {
@@ -49,15 +49,6 @@
     @apply bg-cyber-blue text-cyber-black hover:bg-cyber-blue/90;
   }
 
-  .cyber-button .letter-box {
-    @apply absolute -top-12 left-0 w-full p-2 bg-cyber-black/90 border border-cyber-blue 
-           rounded opacity-0 transition-all duration-300 transform -translate-y-2;
-  }
-
-  .cyber-button .letter-box.visible {
-    @apply opacity-100 translate-y-0;
-  }
-
   .progress-bar {
     @apply h-1 w-full bg-cyber-gray overflow-hidden;
   }
@@ -70,10 +61,6 @@
     @apply fixed top-0 left-0 right-0 h-[2px] bg-cyber-blue/20 pointer-events-none;
   }
 
-  .letter-highlight {
-    @apply bg-cyber-blue/30;
-  }
-
   .word-highlight {
     @apply bg-cyber-blue/30;
   }
@@ -81,15 +68,15 @@
 
 @keyframes collectWord {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1) rotate(0deg);
     opacity: 1;
   }
   50% {
-    transform: translate(var(--move-x), var(--move-y)) scale(0.8);
-    opacity: 0.5;
+    transform: translate(calc(var(--move-x) * 0.5), calc(var(--move-y) * 0.5)) scale(0.8) rotate(180deg);
+    opacity: 0.7;
   }
   100% {
-    transform: translate(var(--target-x), var(--target-y)) scale(0);
+    transform: translate(var(--move-x), var(--move-y)) scale(0) rotate(360deg);
     opacity: 0;
   }
 }
