@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 
@@ -244,7 +243,7 @@ const Index = () => {
             <span className="text-xs md:text-sm text-cyber-blue">{Math.round(calculateProgress())}%</span>
           </div>
           <img 
-            src="/lovable-uploads/14cf0c98-7ca3-4abd-b105-6c8e4e65cb74.png"
+            src="/lovable-uploads/2eaab830-e639-4270-ba5f-4c23f9102f0d.png"
             alt="LUMON Logo"
             className="h-8 md:h-10 w-auto animate-glow"
           />
@@ -329,4 +328,3 @@ const Index = () => {
 };
 
 export default Index;
-
