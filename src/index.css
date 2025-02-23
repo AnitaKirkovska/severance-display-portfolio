@@ -15,17 +15,34 @@
   }
   
   .cyber-grid span {
-    @apply w-8 h-8 flex items-center justify-center text-xl transition-colors duration-200;
+    @apply w-8 h-8 flex items-center justify-center text-xl transition-all duration-200;
   }
   
   .cyber-button {
     @apply relative px-8 py-3 bg-transparent border border-cyber-blue text-cyber-blue 
-           hover:bg-cyber-blue/10 transition-all duration-300 overflow-hidden;
+           transition-all duration-300 overflow-hidden;
   }
 
   .cyber-button::before {
+    @apply absolute inset-0 bg-cyber-blue/10 scale-y-0 origin-top transition-transform duration-300;
     content: '';
-    @apply absolute inset-0 bg-cyber-blue/20 translate-x-[-100%] hover:translate-x-0 transition-transform duration-300;
+  }
+
+  .cyber-button.collecting::before {
+    @apply scale-y-100;
+  }
+
+  .cyber-button.unlocked {
+    @apply bg-cyber-blue text-cyber-black hover:bg-cyber-blue/90;
+  }
+
+  .cyber-button .letter-box {
+    @apply absolute -top-12 left-0 w-full p-2 bg-cyber-black/90 border border-cyber-blue 
+           rounded opacity-0 transition-all duration-300 transform -translate-y-2;
+  }
+
+  .cyber-button .letter-box.visible {
+    @apply opacity-100 translate-y-0;
   }
 
   .progress-bar {
@@ -39,4 +56,28 @@
   .scan-line {
     @apply fixed top-0 left-0 right-0 h-[2px] bg-cyber-blue/20 pointer-events-none;
   }
+
+  .letter-highlight {
+    @apply bg-cyber-blue/30;
+  }
 }
+
+@keyframes collectLetter {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(var(--move-x), var(--move-y)) scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(var(--target-x), var(--target-y)) scale(0);
+    opacity: 0;
+  }
+}
+
+.collecting-letter {
+  animation: collectLetter 0.5s forwards;
+}
+

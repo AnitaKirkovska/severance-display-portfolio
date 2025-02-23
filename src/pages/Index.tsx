@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, useRef } from 'react';
 
 interface LetterPosition {
   row: number;
@@ -13,6 +14,8 @@ const Index = () => {
   const [grid, setGrid] = useState<string[][]>([]);
   const [foundLetters, setFoundLetters] = useState<{ [key: string]: string[] }>({});
   const [unlockedButtons, setUnlockedButtons] = useState<Set<string>>(new Set());
+  const [collectingButton, setCollectingButton] = useState<string | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const navButtons = [
     { 
@@ -73,27 +76,50 @@ const Index = () => {
     generateGrid();
   }, []);
 
-  const handleCellClick = (row: number, col: number) => {
+  const handleCellClick = async (row: number, col: number) => {
     const clickedPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
     
-    if (clickedPosition) {
+    if (clickedPosition && !unlockedButtons.has(clickedPosition.buttonId)) {
       const { letter, buttonId } = clickedPosition;
       const currentFoundLetters = foundLetters[buttonId] || [];
       
       if (!currentFoundLetters.includes(letter)) {
-        const updatedFoundLetters = {
-          ...foundLetters,
-          [buttonId]: [...currentFoundLetters, letter].sort()
-        };
-        setFoundLetters(updatedFoundLetters);
+        setCollectingButton(buttonId);
+        
+        // Create letter collection animation
+        const cellElement = document.getElementById(`cell-${row}-${col}`);
+        const buttonElement = document.getElementById(`button-${buttonId}`);
+        
+        if (cellElement && buttonElement) {
+          const cellRect = cellElement.getBoundingClientRect();
+          const buttonRect = buttonElement.getBoundingClientRect();
+          
+          const moveX = buttonRect.left - cellRect.left;
+          const moveY = buttonRect.top - cellRect.top;
+          
+          cellElement.style.setProperty('--move-x', `${moveX}px`);
+          cellElement.style.setProperty('--move-y', `${moveY}px`);
+          cellElement.classList.add('collecting-letter');
+          
+          // Wait for animation to complete
+          await new Promise(resolve => setTimeout(resolve, 500));
+          
+          const updatedFoundLetters = {
+            ...foundLetters,
+            [buttonId]: [...currentFoundLetters, letter].sort()
+          };
+          setFoundLetters(updatedFoundLetters);
 
-        const allLettersForButton = letterPositions
-          .filter(pos => pos.buttonId === buttonId)
-          .map(pos => pos.letter)
-          .sort();
+          const allLettersForButton = letterPositions
+            .filter(pos => pos.buttonId === buttonId)
+            .map(pos => pos.letter)
+            .sort();
 
-        if (updatedFoundLetters[buttonId].join('') === allLettersForButton.join('')) {
-          setUnlockedButtons(prev => new Set([...prev, buttonId]));
+          if (updatedFoundLetters[buttonId].join('') === allLettersForButton.join('')) {
+            setUnlockedButtons(prev => new Set([...prev, buttonId]));
+          }
+          
+          setCollectingButton(null);
         }
       }
     }
@@ -111,20 +137,21 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
       {/* Background Grid */}
-      <div className="cyber-grid">
+      <div className="cyber-grid" ref={gridRef}>
         {grid.map((row, i) => (
           <div key={i} className="flex justify-center gap-2">
             {row.map((cell, j) => {
               const position = letterPositions.find(pos => pos.row === i && pos.col === j);
               const isLetter = !!position;
-              const isHighlighted = position && hoveredLetter === position.buttonId;
+              const isHighlighted = position && (hoveredLetter === position.buttonId || collectingButton === position.buttonId);
               
               return (
                 <span
+                  id={`cell-${i}-${j}`}
                   key={`${i}-${j}`}
                   className={`${
                     isLetter 
-                      ? `text-cyber-blue cursor-pointer ${isHighlighted ? 'bg-cyber-blue/30' : 'hover:bg-cyber-blue/20'}`
+                      ? `text-cyber-blue cursor-pointer ${isHighlighted ? 'letter-highlight' : 'hover:bg-cyber-blue/20'}`
                       : 'text-cyber-blue/50'
                   }`}
                   onClick={() => handleCellClick(i, j)}
@@ -158,20 +185,21 @@ const Index = () => {
         <div className="grid grid-cols-4 gap-4 p-4">
           {navButtons.map((button) => (
             <div key={button.id} className="flex flex-col space-y-2 relative">
-              {foundLetters[button.id] && foundLetters[button.id].length > 0 && (
-                <div className="absolute -top-12 left-0 w-full p-2 bg-cyber-black/90 border border-cyber-blue rounded text-xs">
-                  {foundLetters[button.id].join('')}
-                </div>
-              )}
               <a 
+                id={`button-${button.id}`}
                 href={unlockedButtons.has(button.id) ? button.link : '#'}
                 target={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "_blank" : undefined}
                 rel={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "noopener noreferrer" : undefined}
-                className={`cyber-button ${!unlockedButtons.has(button.id) ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`cyber-button ${collectingButton === button.id ? 'collecting' : ''} ${unlockedButtons.has(button.id) ? 'unlocked' : 'opacity-50 cursor-not-allowed'}`}
                 onMouseEnter={() => setHoveredButton(button.id)}
                 onMouseLeave={() => setHoveredButton(null)}
                 onClick={(e) => !unlockedButtons.has(button.id) && e.preventDefault()}
               >
+                {foundLetters[button.id] && foundLetters[button.id].length > 0 && (
+                  <div className={`letter-box ${foundLetters[button.id].length > 0 ? 'visible' : ''}`}>
+                    {foundLetters[button.id].join('')}
+                  </div>
+                )}
                 {button.label}
               </a>
               <div className="progress-bar">
