@@ -243,9 +243,11 @@ const Index = () => {
             </div>
             <span className="text-xs md:text-sm text-cyber-blue">{Math.round(calculateProgress())}%</span>
           </div>
-          <div className="rounded-full border border-cyber-blue p-1 md:p-2 animate-glow">
-            <span className="text-xs md:text-sm">ANITA</span>
-          </div>
+          <img 
+            src="/lovable-uploads/14cf0c98-7ca3-4abd-b105-6c8e4e65cb74.png"
+            alt="LUMON Logo"
+            className="h-8 md:h-10 w-auto animate-glow"
+          />
         </div>
       </header>
 
