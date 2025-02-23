@@ -149,8 +149,8 @@ const Index = () => {
                 word.some(letter => letter.row === i && letter.col === j)
               );
               const isLetter = wordIndex !== -1;
-              const isHighlighted = wordIndex !== -1 && (hoveredWord === wordIndex || collectingButton === wordPositions[wordIndex][0].buttonId);
-              const isCollecting = collectingButton === (wordIndex !== -1 ? wordPositions[wordIndex][0].buttonId : null);
+              const isHighlighted = wordIndex !== -1 && hoveredWord === wordIndex;
+              const isCollecting = wordIndex !== -1 && collectingButton === wordPositions[wordIndex][0].buttonId;
               
               return (
                 <span
@@ -161,7 +161,7 @@ const Index = () => {
                       ? `text-cyber-blue cursor-pointer text-xl font-bold ${
                           isHighlighted ? 'word-highlight' : ''
                         } ${
-                          isCollecting ? '' : 'hover:animate-wiggle'
+                          !isCollecting ? 'hover:animate-wiggle' : ''
                         }`
                       : 'text-cyber-blue/30 text-lg'
                   } transition-all duration-200`}
