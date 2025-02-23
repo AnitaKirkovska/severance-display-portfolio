@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 
@@ -199,7 +200,7 @@ const Index = () => {
     }
 
     if (isLetter) {
-      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'bg-cyber-blue/30' : 'hover:bg-cyber-blue/20'}`;
+      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150' : 'hover:brightness-125'}`;
     } else {
       classes += ' text-cyber-blue/50';
     }
@@ -326,3 +327,4 @@ const Index = () => {
 };
 
 export default Index;
+
