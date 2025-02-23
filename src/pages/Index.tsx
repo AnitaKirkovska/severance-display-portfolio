@@ -1,4 +1,6 @@
+
 import { useState, useEffect, useRef } from 'react';
+import Confetti from 'react-confetti';
 
 interface LetterPosition {
   row: number;
@@ -16,6 +18,7 @@ const Index = () => {
   const [animatingButton, setAnimatingButton] = useState<string | null>(null);
   const [showLetters, setShowLetters] = useState<string | null>(null);
   const [floatingLetters, setFloatingLetters] = useState<Array<{ letter: string, style: React.CSSProperties }>>([]);
+  const [showConfetti, setShowConfetti] = useState(false);
   const buttonRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
   const navButtons = [
@@ -177,8 +180,21 @@ const Index = () => {
     return (unlockedCount / totalPhrases) * 100;
   };
 
+  // Check if all buttons are unlocked and trigger confetti
+  useEffect(() => {
+    const progress = calculateProgress();
+    if (progress === 100) {
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 5000); // Stop confetti after 5 seconds
+    }
+  }, [unlockedButtons]);
+
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
+      {showConfetti && <Confetti />}
+      
       {/* Background Grid */}
       <div className="cyber-grid">
         {grid.map((row, i) => (
@@ -233,11 +249,14 @@ const Index = () => {
           <span className="text-sm opacity-50">FOUNDING GROWTH LEAD</span>
         </div>
         <div className="flex items-center space-x-4">
-          <div className="w-48 bg-cyber-blue/20 h-2 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-cyber-blue transition-all duration-1000 ease-out"
-              style={{ width: `${calculateProgress()}%` }}
-            />
+          <div className="flex items-center space-x-2">
+            <div className="w-48 bg-cyber-blue/20 h-2 rounded-full overflow-hidden">
+              <div 
+                className="h-full bg-cyber-blue transition-all duration-1000 ease-out"
+                style={{ width: `${calculateProgress()}%` }}
+              />
+            </div>
+            <span className="text-sm text-cyber-blue">{Math.round(calculateProgress())}%</span>
           </div>
           <div className="rounded-full border border-cyber-blue p-2 animate-glow">
             <span className="text-sm">ANITA</span>
