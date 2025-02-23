@@ -11,11 +11,11 @@
 
 @layer components {
   .cyber-grid {
-    @apply fixed inset-0 flex flex-col items-center justify-center opacity-30 pointer-events-auto select-none gap-1;
+    @apply fixed inset-0 flex flex-col items-center justify-center opacity-30 pointer-events-auto select-none gap-2;
   }
   
   .cyber-grid span {
-    @apply w-4 h-4 flex items-center justify-center text-[10px] transition-colors duration-200;
+    @apply w-8 h-8 flex items-center justify-center text-xl transition-colors duration-200;
   }
   
   .cyber-button {
@@ -40,4 +40,3 @@
     @apply fixed top-0 left-0 right-0 h-[2px] bg-cyber-blue/20 pointer-events-none;
   }
 }
-

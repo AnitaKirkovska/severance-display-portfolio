@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 
 interface LetterPosition {
@@ -39,40 +38,20 @@ const Index = () => {
   ];
 
   const letterPositions: LetterPosition[] = [
-    // ABOUT ME
-    { row: 2, col: 3, letter: 'A', buttonId: 'about' },
-    { row: 4, col: 7, letter: 'B', buttonId: 'about' },
-    { row: 1, col: 12, letter: 'O', buttonId: 'about' },
-    { row: 6, col: 15, letter: 'U', buttonId: 'about' },
-    { row: 3, col: 20, letter: 'T', buttonId: 'about' },
-    { row: 5, col: 25, letter: 'M', buttonId: 'about' },
-    { row: 7, col: 30, letter: 'E', buttonId: 'about' },
-    // LINKED IN
-    { row: 8, col: 5, letter: 'L', buttonId: 'linkedin' },
-    { row: 9, col: 10, letter: 'I', buttonId: 'linkedin' },
-    { row: 7, col: 15, letter: 'N', buttonId: 'linkedin' },
-    { row: 6, col: 20, letter: 'K', buttonId: 'linkedin' },
-    { row: 5, col: 25, letter: 'E', buttonId: 'linkedin' },
-    { row: 4, col: 30, letter: 'D', buttonId: 'linkedin' },
-    // ARTICLE
-    { row: 10, col: 3, letter: 'A', buttonId: 'article' },
-    { row: 9, col: 8, letter: 'R', buttonId: 'article' },
-    { row: 8, col: 13, letter: 'T', buttonId: 'article' },
-    { row: 7, col: 18, letter: 'I', buttonId: 'article' },
-    { row: 6, col: 23, letter: 'C', buttonId: 'article' },
-    { row: 5, col: 28, letter: 'L', buttonId: 'article' },
-    { row: 4, col: 33, letter: 'E', buttonId: 'article' },
-    // CALL
-    { row: 11, col: 5, letter: 'C', buttonId: 'call' },
-    { row: 10, col: 10, letter: 'A', buttonId: 'call' },
-    { row: 9, col: 15, letter: 'L', buttonId: 'call' },
-    { row: 8, col: 20, letter: 'L', buttonId: 'call' },
+    { row: 5, col: 10, letter: 'S', buttonId: 'call' },
+    { row: 5, col: 12, letter: 'E', buttonId: 'call' },
+    { row: 5, col: 14, letter: 'N', buttonId: 'call' },
+    { row: 5, col: 16, letter: 'D', buttonId: 'call' },
+    { row: 6, col: 10, letter: 'M', buttonId: 'call' },
+    { row: 6, col: 12, letter: 'A', buttonId: 'call' },
+    { row: 6, col: 14, letter: 'I', buttonId: 'call' },
+    { row: 6, col: 16, letter: 'L', buttonId: 'call' },
   ];
 
   useEffect(() => {
     const generateGrid = () => {
-      const rows = 12;
-      const cols = 35;
+      const rows = 15;
+      const cols = 25;
       const newGrid: string[][] = [];
       
       for (let i = 0; i < rows; i++) {
@@ -107,7 +86,6 @@ const Index = () => {
         };
         setFoundLetters(updatedFoundLetters);
 
-        // Check if all letters for this button have been found
         const allLettersForButton = letterPositions
           .filter(pos => pos.buttonId === buttonId)
           .map(pos => pos.letter)
@@ -125,7 +103,7 @@ const Index = () => {
       {/* Background Grid */}
       <div className="cyber-grid">
         {grid.map((row, i) => (
-          <div key={i} className="flex justify-center gap-1">
+          <div key={i} className="flex justify-center gap-2">
             {row.map((cell, j) => {
               const isLetter = letterPositions.some(pos => pos.row === i && pos.col === j);
               return (
