@@ -29,6 +29,7 @@
 
   .cyber-button.animating-box {
     animation: openBox 0.5s forwards;
+    border-top-color: transparent;
   }
 
   .cyber-button.animating-box::before,
