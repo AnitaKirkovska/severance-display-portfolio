@@ -73,6 +73,7 @@
   .grid-cell {
     @apply text-xs sm:text-sm md:text-lg lg:text-2xl w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-12 lg:h-12 
            flex items-center justify-center transition-all duration-300 ease-in-out transform;
+    animation: floatLeftRight 4s ease-in-out infinite;
   }
 
   .grid-cell-hover {
@@ -162,3 +163,16 @@
     transform: translateY(100vh);
   }
 }
+
+@keyframes floatLeftRight {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
