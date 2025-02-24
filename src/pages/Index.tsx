@@ -49,6 +49,11 @@ const Index = () => {
       link: 'https://www.vellum.ai/reasoning-models' 
     },
     { 
+      id: 'video', 
+      label: 'LATEST VIDEO', 
+      link: 'https://www.youtube.com/watch?v=U3MVU6JpocU' 
+    },
+    { 
       id: 'call', 
       label: 'BOOK CALL', 
       link: 'https://calendly.com/anita-vellum/book-a-call' 
@@ -90,6 +95,13 @@ const Index = () => {
     { row: 23, col: 6, letter: 'E', buttonId: 'project' },
     { row: 23, col: 7, letter: 'C', buttonId: 'project' },
     { row: 23, col: 8, letter: 'T', buttonId: 'project' },
+    
+    // Latest Video letters
+    { row: 26, col: 2, letter: 'V', buttonId: 'video' },
+    { row: 26, col: 3, letter: 'I', buttonId: 'video' },
+    { row: 26, col: 4, letter: 'D', buttonId: 'video' },
+    { row: 26, col: 5, letter: 'E', buttonId: 'video' },
+    { row: 26, col: 6, letter: 'O', buttonId: 'video' },
     
     { row: 28, col: 2, letter: 'B', buttonId: 'call' },
     { row: 28, col: 3, letter: 'O', buttonId: 'call' },
