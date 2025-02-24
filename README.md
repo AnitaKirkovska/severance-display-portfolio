@@ -1,7 +1,7 @@
 # Severance-inspired portfolio
 
 ## Project info
-A portfolio site inspired by Severance, designed to feel like a professional profile—at least, from the outie perspective. This project is built with Lovable.dev. 
+A portfolio site inspired by Severance, designed to feel like a professional profile—at least, from the outie perspective. This project is built using Lovable.dev. 
 
 ![Portfolio Preview](https://f9d6294b37cdbbb51eb70be7d329a9e0.cdn.bubble.io/f1740431669162x742827075695665200/CleanShot%202025-02-24%20at%2022.14.14%402x.png?_gl=1*1o15vtb*_gcl_au*MzQ2NTA5MzguMTc0MDQzMTU1OQ..*_ga*MTk4NTgxMDA4OS4xNzQwNDE1NjY1*_ga_BFPVR2DEE2*MTc0MDQxNTY2NC4xLjEuMTc0MDQzMTU3MS40MS4wLjA.)
 
