@@ -236,10 +236,10 @@ const Index = () => {
     
     if (i === hoveredCell.row && j === hoveredCell.col) {
       classes += ' grid-cell-hover';
-    } else if (distance <= 3) {
+    } else if (distance <= 4) {
       if (distance <= 1.5) {
         classes += ' grid-cell-neighbor-1';
-      } else if (distance <= 2.25) {
+      } else if (distance <= 2.5) {
         classes += ' grid-cell-neighbor-2';
       } else {
         classes += ' grid-cell-neighbor-3';

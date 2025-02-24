@@ -79,19 +79,19 @@
   }
 
   .grid-cell-hover {
-    @apply scale-150 text-[#D6BCFA] brightness-150;
+    @apply scale-150 text-white brightness-150;
   }
 
   .grid-cell-neighbor-1 {
-    @apply scale-125 text-[#E5DEFF] brightness-125;
+    @apply scale-135 text-white brightness-125;
   }
 
   .grid-cell-neighbor-2 {
-    @apply scale-110 text-[#D3E4FD] brightness-110;
+    @apply scale-125 text-white brightness-110;
   }
 
   .grid-cell-neighbor-3 {
-    @apply scale-105 text-[#C8C8C9] brightness-105;
+    @apply scale-115 text-white brightness-105;
   }
 }
 
