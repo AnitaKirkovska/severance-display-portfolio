@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -43,12 +42,11 @@ const Index = () => {
     { 
       id: 'call', 
       label: 'BOOK CALL', 
-      link: '#' 
+      link: 'https://calendly.com/anita-vellum/book-a-call' 
     },
   ];
 
   const letterPositions: LetterPosition[] = [
-    // ABOUT ME - Spread out horizontally
     { row: 2, col: 2, letter: 'A', buttonId: 'about' },
     { row: 2, col: 3, letter: 'B', buttonId: 'about' },
     { row: 2, col: 4, letter: 'O', buttonId: 'about' },
@@ -57,7 +55,6 @@ const Index = () => {
     { row: 2, col: 7, letter: 'M', buttonId: 'about' },
     { row: 2, col: 8, letter: 'E', buttonId: 'about' },
     
-    // LINKED IN - Spread out diagonally
     { row: 4, col: 2, letter: 'L', buttonId: 'linkedin' },
     { row: 4, col: 3, letter: 'I', buttonId: 'linkedin' },
     { row: 4, col: 4, letter: 'N', buttonId: 'linkedin' },
@@ -67,7 +64,6 @@ const Index = () => {
     { row: 4, col: 8, letter: 'I', buttonId: 'linkedin' },
     { row: 4, col: 9, letter: 'N', buttonId: 'linkedin' },
     
-    // ARTICLE - Spread out horizontally
     { row: 6, col: 2, letter: 'A', buttonId: 'article' },
     { row: 6, col: 3, letter: 'R', buttonId: 'article' },
     { row: 6, col: 4, letter: 'T', buttonId: 'article' },
@@ -76,15 +72,16 @@ const Index = () => {
     { row: 6, col: 7, letter: 'L', buttonId: 'article' },
     { row: 6, col: 8, letter: 'E', buttonId: 'article' },
     
-    // SEND MAIL - Moved to bottom and spread out
-    { row: 8, col: 2, letter: 'S', buttonId: 'call' },
-    { row: 8, col: 3, letter: 'E', buttonId: 'call' },
-    { row: 8, col: 4, letter: 'N', buttonId: 'call' },
-    { row: 8, col: 5, letter: 'D', buttonId: 'call' },
-    { row: 9, col: 2, letter: 'M', buttonId: 'call' },
-    { row: 9, col: 3, letter: 'A', buttonId: 'call' },
-    { row: 9, col: 4, letter: 'I', buttonId: 'call' },
-    { row: 9, col: 5, letter: 'L', buttonId: 'call' },
+    { row: 8, col: 2, letter: 'C', buttonId: 'call' },
+    { row: 8, col: 3, letter: 'H', buttonId: 'call' },
+    { row: 8, col: 4, letter: 'A', buttonId: 'call' },
+    { row: 8, col: 5, letter: 'T', buttonId: 'call' },
+    { row: 9, col: 2, letter: 'W', buttonId: 'call' },
+    { row: 9, col: 3, letter: 'I', buttonId: 'call' },
+    { row: 9, col: 4, letter: 'T', buttonId: 'call' },
+    { row: 9, col: 5, letter: 'H', buttonId: 'call' },
+    { row: 10, col: 2, letter: 'M', buttonId: 'call' },
+    { row: 10, col: 3, letter: 'E', buttonId: 'call' },
   ];
 
   useEffect(() => {
@@ -337,4 +334,3 @@ const Index = () => {
 };
 
 export default Index;
-
