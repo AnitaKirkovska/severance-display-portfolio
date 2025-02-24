@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -215,7 +216,7 @@ const Index = () => {
   };
 
   const getCellClassName = (i: number, j: number) => {
-    if (!hoveredCell) return `grid-cell ${getAnimationClass(i, j)}`;
+    if (!hoveredCell) return `grid-cell ${getAnimationClass(i, j)} opacity-30 transition-opacity duration-300`;
     
     const position = letterPositions.find(pos => pos.row === i && pos.col === j);
     const isLetter = !!position;
@@ -229,22 +230,24 @@ const Index = () => {
       Math.pow(j - hoveredCell.col, 2)
     );
 
-    let classes = `grid-cell ${getAnimationClass(i, j)}`;
+    let classes = `grid-cell ${getAnimationClass(i, j)} transition-opacity duration-300`;
     
     if (i === hoveredCell.row && j === hoveredCell.col) {
-      classes += ' grid-cell-hover';
+      classes += ' grid-cell-hover opacity-100';
     } else if (distance <= 4) {
       if (distance <= 1.5) {
-        classes += ' grid-cell-neighbor-1';
+        classes += ' grid-cell-neighbor-1 opacity-90';
       } else if (distance <= 2.5) {
-        classes += ' grid-cell-neighbor-2';
+        classes += ' grid-cell-neighbor-2 opacity-70';
       } else {
-        classes += ' grid-cell-neighbor-3';
+        classes += ' grid-cell-neighbor-3 opacity-50';
       }
+    } else {
+      classes += ' opacity-30';
     }
 
     if (isLetter) {
-      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150' : 'hover:brightness-125'}`;
+      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150' : 'hover:opacity-100'}`;
     } else {
       classes += ' text-cyber-blue/50';
     }
@@ -393,3 +396,4 @@ const Index = () => {
 };
 
 export default Index;
+
