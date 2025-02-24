@@ -51,6 +51,15 @@ const Welcome = ({ onClose }: WelcomeProps) => {
               <p className="text-sm md:text-base">In trust,</p>
               <p className="text-sm md:text-base font-bold">Anita Kirkovska</p>
             </div>
+
+            <div className="pt-6 flex justify-center">
+              <button
+                onClick={onClose}
+                className="px-8 py-3 bg-cyber-blue text-cyber-black font-bold tracking-wider hover:bg-cyber-blue/90 transition-colors uppercase"
+              >
+                Begin
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -59,3 +68,4 @@ const Welcome = ({ onClose }: WelcomeProps) => {
 };
 
 export default Welcome;
+
