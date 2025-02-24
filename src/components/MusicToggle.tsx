@@ -4,7 +4,7 @@ import { Volume2, VolumeX } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 // Using a reliable direct MP3 URL for testing
-const MUSIC_URL = 'https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav';
+const MUSIC_URL = 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3';
 
 const MusicToggle = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -13,9 +13,9 @@ const MusicToggle = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    audioRef.current = new Audio(MUSIC_URL);
-    audioRef.current.loop = true;
-    audioRef.current.preload = 'auto'; // Ensure audio preloading
+    const audio = new Audio();
+    audio.loop = true;
+    audio.preload = 'auto';
 
     const handleCanPlay = () => {
       setIsLoading(false);
@@ -23,28 +23,31 @@ const MusicToggle = () => {
     };
 
     const handleError = (e: Event) => {
-      console.error("Audio loading error:", e);
+      const target = e.target as HTMLAudioElement;
+      console.error("Audio loading error:", {
+        error: target.error,
+        networkState: target.networkState,
+        readyState: target.readyState
+      });
+      
       toast({
         title: "Error",
-        description: "Unable to load music. Please try uploading the file directly to the project.",
+        description: "Unable to load music. Please check your internet connection and try again.",
         variant: "destructive",
       });
       setIsLoading(false);
     };
 
-    audioRef.current.addEventListener('canplay', handleCanPlay);
-    audioRef.current.addEventListener('error', handleError);
-    
-    // Start loading the audio
-    audioRef.current.load();
+    audio.addEventListener('canplay', handleCanPlay);
+    audio.addEventListener('error', handleError);
+    audio.src = MUSIC_URL;
+    audioRef.current = audio;
     
     return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('canplay', handleCanPlay);
-        audioRef.current.removeEventListener('error', handleError);
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
+      audio.removeEventListener('canplay', handleCanPlay);
+      audio.removeEventListener('error', handleError);
+      audio.pause();
+      audioRef.current = null;
     };
   }, [toast]);
 
@@ -88,4 +91,3 @@ const MusicToggle = () => {
 };
 
 export default MusicToggle;
-
