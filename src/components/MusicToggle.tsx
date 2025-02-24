@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
-// Updated to use a direct streaming URL
-const MUSIC_URL = 'https://drive.google.com/uc?export=download&id=1nCR6mBsUsz56IRzBv36H3TJfBuV3CMlQ';
+// Using a reliable direct MP3 URL for testing
+const MUSIC_URL = 'https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav';
 
 const MusicToggle = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -15,17 +15,18 @@ const MusicToggle = () => {
   useEffect(() => {
     audioRef.current = new Audio(MUSIC_URL);
     audioRef.current.loop = true;
+    audioRef.current.preload = 'auto'; // Ensure audio preloading
 
     const handleCanPlay = () => {
       setIsLoading(false);
       console.log("Audio is ready to play");
     };
 
-    const handleError = (e: ErrorEvent) => {
+    const handleError = (e: Event) => {
       console.error("Audio loading error:", e);
       toast({
         title: "Error",
-        description: "Unable to load music. Please try again.",
+        description: "Unable to load music. Please try uploading the file directly to the project.",
         variant: "destructive",
       });
       setIsLoading(false);
@@ -87,3 +88,4 @@ const MusicToggle = () => {
 };
 
 export default MusicToggle;
+
