@@ -51,11 +51,15 @@
   }
 
   .progress-bar {
-    @apply h-1 w-full bg-cyber-gray overflow-hidden mt-1;
+    @apply h-6 w-full bg-cyber-gray overflow-hidden mt-1 relative;
   }
 
   .progress-bar-fill {
     @apply h-full bg-cyber-blue transition-all duration-1000 ease-out;
+  }
+
+  .progress-text {
+    @apply absolute inset-0 flex items-center justify-center text-xs text-white font-bold z-10;
   }
 
   .scan-line {

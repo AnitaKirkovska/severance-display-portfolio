@@ -359,6 +359,9 @@ const Index = () => {
                     width: unlockedButtons.has(button.id) ? '100%' : '0%',
                   }}
                 />
+                <div className="progress-text">
+                  {unlockedButtons.has(button.id) ? '100%' : '0%'}
+                </div>
               </div>
               {hoveredButton === button.id && button.content && unlockedButtons.has(button.id) && (
                 <div className="absolute bottom-full mb-2 md:mb-4 p-2 md:p-4 bg-cyber-black/90 border border-cyber-blue rounded-md max-w-[200px] md:max-w-md z-50">
