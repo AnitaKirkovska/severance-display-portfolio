@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -72,21 +73,19 @@ const Index = () => {
     { row: 6, col: 7, letter: 'L', buttonId: 'article' },
     { row: 6, col: 8, letter: 'E', buttonId: 'article' },
     
-    { row: 8, col: 2, letter: 'C', buttonId: 'call' },
-    { row: 8, col: 3, letter: 'H', buttonId: 'call' },
-    { row: 8, col: 4, letter: 'A', buttonId: 'call' },
-    { row: 8, col: 5, letter: 'T', buttonId: 'call' },
-    { row: 9, col: 2, letter: 'W', buttonId: 'call' },
-    { row: 9, col: 3, letter: 'I', buttonId: 'call' },
-    { row: 9, col: 4, letter: 'T', buttonId: 'call' },
-    { row: 9, col: 5, letter: 'H', buttonId: 'call' },
-    { row: 10, col: 2, letter: 'M', buttonId: 'call' },
-    { row: 10, col: 3, letter: 'E', buttonId: 'call' },
+    { row: 28, col: 2, letter: 'B', buttonId: 'call' },
+    { row: 28, col: 3, letter: 'O', buttonId: 'call' },
+    { row: 28, col: 4, letter: 'O', buttonId: 'call' },
+    { row: 28, col: 5, letter: 'K', buttonId: 'call' },
+    { row: 29, col: 2, letter: 'C', buttonId: 'call' },
+    { row: 29, col: 3, letter: 'A', buttonId: 'call' },
+    { row: 29, col: 4, letter: 'L', buttonId: 'call' },
+    { row: 29, col: 5, letter: 'L', buttonId: 'call' },
   ];
 
   useEffect(() => {
     const generateGrid = () => {
-      const rows = 12;
+      const rows = 30; // Increased to 30 rows
       const cols = 20;
       const newGrid: string[][] = [];
       
@@ -245,7 +244,7 @@ const Index = () => {
       </header>
 
       <div className="cyber-grid pt-20 mb-24">
-        <div className="max-w-full overflow-x-auto px-2 md:px-0">
+        <div className="max-w-full overflow-y-auto h-[60vh] px-2 md:px-0">
           <div className="inline-block min-w-full">
             {grid.map((row, i) => (
               <div key={i} className="flex justify-center gap-1 sm:gap-2 md:gap-4 lg:gap-6">
@@ -321,3 +320,4 @@ const Index = () => {
 };
 
 export default Index;
+
