@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -145,10 +146,10 @@
     transform: translateX(0) rotate(0deg);
   }
   25% {
-    transform: translateX(12px) rotate(3deg);
+    transform: translateX(min(12px, 4vw)) rotate(3deg);
   }
   75% {
-    transform: translateX(-12px) rotate(-3deg);
+    transform: translateX(min(-12px, -4vw)) rotate(-3deg);
   }
   100% {
     transform: translateX(0) rotate(0deg);
@@ -160,7 +161,7 @@
     transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(-10px) scale(1.05);
+    transform: translateY(min(-10px, -3vw)) scale(1.05);
   }
   100% {
     transform: translateY(0) scale(1);
