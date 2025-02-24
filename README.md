@@ -1,4 +1,4 @@
-# Severance-inspired portfolio
+# 🎈 Severance-inspired portfolio
 
 ## Project info
 A portfolio site inspired by Severance, designed to feel like a professional profile—at least, from the outie perspective. This project is built using Lovable.dev. 
