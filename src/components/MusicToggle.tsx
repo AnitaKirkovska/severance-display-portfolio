@@ -2,12 +2,14 @@
 import { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 
+const MUSIC_URL = 'https://drive.google.com/uc?export=download&id=1nCR6mBsUsz56IRzBv36H3TJfBuV3CMlQ';
+
 const MusicToggle = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio('/lovable-uploads/YOUR_MUSIC_FILE.mp3');
+    audioRef.current = new Audio(MUSIC_URL);
     audioRef.current.loop = true;
     
     return () => {
