@@ -16,6 +16,7 @@ const MusicToggle = () => {
     const audio = new Audio();
     audio.loop = true;
     audio.preload = 'auto';
+    audio.volume = 0.5; // Set a moderate volume level
 
     const handleCanPlay = () => {
       setIsLoading(false);
@@ -38,14 +39,28 @@ const MusicToggle = () => {
       setIsLoading(false);
     };
 
+    const handlePlay = () => {
+      console.log("Audio playback started");
+      setIsPlaying(true);
+    };
+
+    const handlePause = () => {
+      console.log("Audio playback paused");
+      setIsPlaying(false);
+    };
+
     audio.addEventListener('canplay', handleCanPlay);
     audio.addEventListener('error', handleError);
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('pause', handlePause);
     audio.src = MUSIC_URL;
     audioRef.current = audio;
     
     return () => {
       audio.removeEventListener('canplay', handleCanPlay);
       audio.removeEventListener('error', handleError);
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
       audio.pause();
       audioRef.current = null;
     };
@@ -55,15 +70,17 @@ const MusicToggle = () => {
     if (!audioRef.current || isLoading) return;
     
     try {
+      console.log("Attempting to toggle music...");
       if (isPlaying) {
-        await audioRef.current.pause();
+        console.log("Pausing music...");
+        audioRef.current.pause();
       } else {
+        console.log("Starting music playback...");
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
           await playPromise;
         }
       }
-      setIsPlaying(!isPlaying);
     } catch (error) {
       console.error("Playback error:", error);
       toast({
@@ -91,3 +108,4 @@ const MusicToggle = () => {
 };
 
 export default MusicToggle;
+
