@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -312,14 +313,16 @@ const Index = () => {
               >
                 {button.label}
               </a>
-              <div className="relative w-full h-10 bg-cyber-gray/20 rounded-full overflow-hidden">
-                <div 
-                  className="absolute left-0 top-0 h-full bg-cyber-blue transition-all duration-1000"
-                  style={{ 
-                    width: unlockedButtons.has(button.id) ? '100%' : '0%',
-                    opacity: unlockedButtons.has(button.id) ? 1 : 0.3
-                  }}
-                />
+              <div className="relative w-full h-1 bg-cyber-gray/20 rounded-full overflow-hidden">
+                <div className="absolute left-0 top-0 h-full bg-cyber-blue/50 transition-all duration-1000">
+                  <div 
+                    className="w-full h-full bg-cyber-blue transition-all duration-1000"
+                    style={{ 
+                      width: hoveredButton === button.id ? '100%' : '0%',
+                      opacity: unlockedButtons.has(button.id) ? 1 : 0.3
+                    }}
+                  />
+                </div>
               </div>
               {hoveredButton === button.id && button.content && unlockedButtons.has(button.id) && (
                 <div className="absolute bottom-full mb-2 md:mb-4 p-2 md:p-4 bg-cyber-black/90 border border-cyber-blue rounded-md max-w-[200px] md:max-w-md z-50">
@@ -331,7 +334,7 @@ const Index = () => {
         </div>
         <div className="mt-4 max-w-4xl mx-auto">
           <div className="flex items-center space-x-4">
-            <div className="relative flex-1 h-10 bg-cyber-gray/20 rounded-full overflow-hidden">
+            <div className="relative flex-1 h-2 bg-cyber-gray/20 rounded-full overflow-hidden">
               <div 
                 className="absolute left-0 top-0 h-full bg-cyber-blue transition-all duration-1000 ease-out"
                 style={{ width: `${calculateProgress()}%` }}
