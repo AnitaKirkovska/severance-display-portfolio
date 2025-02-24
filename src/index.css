@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -52,7 +51,7 @@
   }
 
   .progress-bar {
-    @apply h-6 w-full bg-cyber-gray overflow-hidden mt-1 relative;
+    @apply h-6 w-full overflow-hidden mt-1 relative border border-cyber-blue bg-transparent;
   }
 
   .progress-bar-fill {
