@@ -22,6 +22,10 @@
     @apply bg-cyber-blue/20;
   }
 
+  .cyber-button.locked {
+    @apply opacity-50 cursor-not-allowed border-cyber-blue/50 text-cyber-blue/50;
+  }
+
   .cyber-button.animating-box {
     animation: openBox 1s forwards;
     border-top-color: transparent;
@@ -47,7 +51,7 @@
   }
 
   .progress-bar {
-    @apply h-1 w-full bg-cyber-gray overflow-hidden;
+    @apply h-1 w-full bg-cyber-gray overflow-hidden mt-1;
   }
 
   .progress-bar-fill {

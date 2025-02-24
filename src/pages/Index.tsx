@@ -70,7 +70,6 @@ const Index = () => {
     { row: 2, col: 7, letter: 'M', buttonId: 'about' },
     { row: 2, col: 8, letter: 'E', buttonId: 'about' },
     
-    // LinkedIn letters in a 2x4 grid
     { row: 12, col: 3, letter: 'L', buttonId: 'linkedin' },
     { row: 12, col: 4, letter: 'I', buttonId: 'linkedin' },
     { row: 12, col: 5, letter: 'N', buttonId: 'linkedin' },
@@ -88,7 +87,6 @@ const Index = () => {
     { row: 18, col: 7, letter: 'L', buttonId: 'article' },
     { row: 18, col: 8, letter: 'E', buttonId: 'article' },
     
-    // Latest Project letters
     { row: 23, col: 2, letter: 'P', buttonId: 'project' },
     { row: 23, col: 3, letter: 'R', buttonId: 'project' },
     { row: 23, col: 4, letter: 'O', buttonId: 'project' },
@@ -97,7 +95,6 @@ const Index = () => {
     { row: 23, col: 7, letter: 'C', buttonId: 'project' },
     { row: 23, col: 8, letter: 'T', buttonId: 'project' },
     
-    // Latest Video letters
     { row: 26, col: 2, letter: 'V', buttonId: 'video' },
     { row: 26, col: 3, letter: 'I', buttonId: 'video' },
     { row: 26, col: 4, letter: 'D', buttonId: 'video' },
@@ -129,12 +126,10 @@ const Index = () => {
       }
 
       letterPositions.forEach(({ row, col, letter, buttonId }) => {
-        // Check if the letter's button has been found
         const isButtonComplete = foundLetters[buttonId];
         if (!isButtonComplete && newGrid[row] && newGrid[row][col]) {
           newGrid[row][col] = letter;
         } else if (isButtonComplete && newGrid[row] && newGrid[row][col]) {
-          // Leave a blank space (empty string) where the letter was
           newGrid[row][col] = ' ';
         }
       });
@@ -342,16 +337,14 @@ const Index = () => {
       <main className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 w-full px-4 bg-cyber-black/80 backdrop-blur-md py-4">
         <div className="grid grid-cols-2 lg:grid-cols-6 gap-2 md:gap-4 max-w-6xl mx-auto">
           {navButtons.map((button) => (
-            <div key={button.id} className="flex flex-col space-y-1 md:space-y-2 relative">
+            <div key={button.id} className="flex flex-col space-y-1">
               <a 
                 href={unlockedButtons.has(button.id) ? button.link : '#'}
                 target={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "_blank" : undefined}
                 rel={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "noopener noreferrer" : undefined}
-                className={`cyber-button text-sm md:text-base relative ${
-                  !unlockedButtons.has(button.id) ? 'opacity-50 cursor-not-allowed' : ''
-                } ${animatingButton === button.id ? 'animating-box' : ''} ${
-                  unlockedButtons.has(button.id) ? 'unlocked' : ''
-                }`}
+                className={`cyber-button text-center ${
+                  unlockedButtons.has(button.id) ? 'unlocked' : 'locked'
+                } ${animatingButton === button.id ? 'animating-box' : ''}`}
                 onMouseEnter={() => setHoveredButton(button.id)}
                 onMouseLeave={() => setHoveredButton(null)}
                 onClick={(e) => !unlockedButtons.has(button.id) && e.preventDefault()}
@@ -359,9 +352,9 @@ const Index = () => {
               >
                 {button.label}
               </a>
-              <div className="relative w-full h-1 bg-cyber-gray/20 rounded-full overflow-hidden">
+              <div className="progress-bar">
                 <div 
-                  className="absolute left-0 top-0 h-full bg-cyber-blue transition-all duration-1000"
+                  className="progress-bar-fill"
                   style={{ 
                     width: unlockedButtons.has(button.id) ? '100%' : '0%',
                   }}
