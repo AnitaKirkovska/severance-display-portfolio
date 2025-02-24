@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
-// Using a reliable public domain audio file for testing
-const MUSIC_URL = 'https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav';
+// Using the provided audio URL
+const MUSIC_URL = 'https://f9d6294b37cdbbb51eb70be7d329a9e0.cdn.bubble.io/f1740415725183x200821341533341500/severance_appletv%20%281%29.mp3?_gl=1*1k5u3xb*_gcl_au*MjAyMzAwNTEzLjE3NDA0MTU3MDU.*_ga*MTk4NTgxMDA4OS4xNzQwNDE1NjY1*_ga_BFPVR2DEE2*MTc0MDQxNTY2NC4xLjEuMTc0MDQxNTcyMS4zLjAuMA..';
 
 const MusicToggle = () => {
   const [isPlaying, setIsPlaying] = useState(false);
