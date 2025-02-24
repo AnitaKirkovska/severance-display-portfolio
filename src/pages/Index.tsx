@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -253,7 +254,7 @@ const Index = () => {
         </div>
       </header>
 
-      <div className="cyber-grid pt-20 mb-24">
+      <div className="cyber-grid pt-20">
         <div 
           ref={gridRef}
           className="max-w-full overflow-y-auto h-[60vh] px-2 md:px-0 relative scroll-smooth"
@@ -277,13 +278,13 @@ const Index = () => {
               </div>
             ))}
           </div>
-          
-          {showScrollIndicator && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-cyber-blue/70 animate-bounce pointer-events-none">
-              <ChevronDown size={32} />
-            </div>
-          )}
         </div>
+        
+        {showScrollIndicator && (
+          <div className="flex justify-center mt-4">
+            <ChevronDown size={32} className="text-cyber-blue/70 animate-bounce pointer-events-none" />
+          </div>
+        )}
       </div>
 
       {floatingLetters.map((item, index) => (
@@ -340,3 +341,4 @@ const Index = () => {
 };
 
 export default Index;
+
