@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -206,17 +205,15 @@ const Index = () => {
   };
 
   const handleLetterHover = (row: number, col: number) => {
-    const hoveredPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
-    if (hoveredPosition) {
-      setHoveredLetter(hoveredPosition.buttonId);
-    } else {
-      setHoveredLetter(null);
+    if (hoveredCell?.row !== row || hoveredCell?.col !== col) {
+      const hoveredPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
+      setHoveredLetter(hoveredPosition ? hoveredPosition.buttonId : null);
+      setHoveredCell({ row, col });
     }
-    setHoveredCell({ row, col });
   };
 
   const getCellClassName = (i: number, j: number) => {
-    if (!hoveredCell) return `grid-cell ${getAnimationClass(i, j)} opacity-30 transition-opacity duration-300`;
+    if (!hoveredCell) return `grid-cell ${getAnimationClass(i, j)} opacity-30 transition-all duration-500`;
     
     const position = letterPositions.find(pos => pos.row === i && pos.col === j);
     const isLetter = !!position;
@@ -230,7 +227,7 @@ const Index = () => {
       Math.pow(j - hoveredCell.col, 2)
     );
 
-    let classes = `grid-cell ${getAnimationClass(i, j)} transition-opacity duration-300`;
+    let classes = `grid-cell ${getAnimationClass(i, j)} transition-all duration-500`;
     
     if (i === hoveredCell.row && j === hoveredCell.col) {
       classes += ' grid-cell-hover opacity-100';
@@ -247,7 +244,7 @@ const Index = () => {
     }
 
     if (isLetter) {
-      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150' : 'hover:opacity-100'}`;
+      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150' : ''}`;
     } else {
       classes += ' text-cyber-blue/50';
     }
@@ -396,4 +393,3 @@ const Index = () => {
 };
 
 export default Index;
-
