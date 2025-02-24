@@ -1,7 +1,7 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
+import { ChevronDown } from 'lucide-react';
 
 interface LetterPosition {
   row: number;
@@ -22,6 +22,8 @@ const Index = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [hoveredCell, setHoveredCell] = useState<{ row: number; col: number } | null>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const navButtons = [
     { 
@@ -85,7 +87,7 @@ const Index = () => {
 
   useEffect(() => {
     const generateGrid = () => {
-      const rows = 30; // Increased to 30 rows
+      const rows = 30;
       const cols = 20;
       const newGrid: string[][] = [];
       
@@ -112,7 +114,7 @@ const Index = () => {
   const getAnimationClass = (row: number, col: number) => {
     const sum = row + col;
     if (letterPositions.some(pos => pos.row === row && pos.col === col)) {
-      return ''; // Letters remain static
+      return '';
     }
     return sum % 3 === 0 ? 'float-horizontal' : sum % 3 === 1 ? 'float-vertical' : '';
   };
@@ -222,6 +224,14 @@ const Index = () => {
     }
   }, [unlockedButtons]);
 
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const element = e.currentTarget;
+    const isScrollable = element.scrollHeight > element.clientHeight;
+    const isAtBottom = Math.abs(element.scrollHeight - element.clientHeight - element.scrollTop) < 1;
+    
+    setShowScrollIndicator(isScrollable && !isAtBottom);
+  };
+
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
       {showConfetti && <Confetti />}
@@ -244,7 +254,11 @@ const Index = () => {
       </header>
 
       <div className="cyber-grid pt-20 mb-24">
-        <div className="max-w-full overflow-y-auto h-[60vh] px-2 md:px-0">
+        <div 
+          ref={gridRef}
+          className="max-w-full overflow-y-auto h-[60vh] px-2 md:px-0 relative scroll-smooth"
+          onScroll={handleScroll}
+        >
           <div className="inline-block min-w-full">
             {grid.map((row, i) => (
               <div key={i} className="flex justify-center gap-1 sm:gap-2 md:gap-4 lg:gap-6">
@@ -263,6 +277,12 @@ const Index = () => {
               </div>
             ))}
           </div>
+          
+          {showScrollIndicator && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-cyber-blue/70 animate-bounce pointer-events-none">
+              <ChevronDown size={32} />
+            </div>
+          )}
         </div>
       </div>
 
@@ -320,4 +340,3 @@ const Index = () => {
 };
 
 export default Index;
-
