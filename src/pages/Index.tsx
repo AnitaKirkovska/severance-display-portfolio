@@ -285,7 +285,7 @@ const Index = () => {
       {showConfetti && <Confetti />}
       
       <header className="fixed top-0 left-0 right-0 p-2 md:p-4 border-b border-cyber-blue/20 bg-cyber-black/80 backdrop-blur-md z-50">
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between max-w-6xl mx-auto gap-2 md:gap-4">
+        <div className="w-full flex flex-col md:flex-row items-center md:items-start justify-center md:justify-between gap-2 md:gap-4 px-4">
           <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-1 md:gap-4">
             <div className="flex items-center justify-center gap-2 md:gap-4">
               <MusicToggle />
