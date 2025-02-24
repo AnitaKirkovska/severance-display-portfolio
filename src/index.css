@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -78,11 +79,11 @@
   }
 
   .grid-cell.float-horizontal {
-    @apply animate-float-horizontal motion-safe:animate-float-horizontal;
+    animation: floatLeftRight 10s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
   .grid-cell.float-vertical {
-    @apply animate-float-vertical motion-safe:animate-float-vertical;
+    animation: floatUpDown 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
   .grid-cell-hover {
@@ -168,10 +169,10 @@
     transform: translateX(0) rotate(0deg);
   }
   25% {
-    transform: translateX(4px) rotate(1deg);
+    transform: translateX(2px) rotate(0.5deg);
   }
   75% {
-    transform: translateX(-4px) rotate(-1deg);
+    transform: translateX(-2px) rotate(-0.5deg);
   }
   100% {
     transform: translateX(0) rotate(0deg);
@@ -183,7 +184,7 @@
     transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(-4px) scale(1.05);
+    transform: translateY(-2px) scale(1.02);
   }
   100% {
     transform: translateY(0) scale(1);
