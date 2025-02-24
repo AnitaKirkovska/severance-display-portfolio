@@ -18,6 +18,15 @@ const MusicToggle = () => {
     const handleCanPlay = () => {
       setIsLoading(false);
       console.log("Audio loaded successfully and ready to play");
+      // Attempt to autoplay when the audio is ready
+      audio.play().catch(error => {
+        console.error("Autoplay failed:", error);
+        toast({
+          title: "Note",
+          description: "Click the button to start playing music",
+          variant: "default",
+        });
+      });
     };
 
     const handleError = (e: Event) => {
