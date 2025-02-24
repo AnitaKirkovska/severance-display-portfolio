@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -193,13 +192,13 @@ const Index = () => {
     let classes = 'grid-cell';
     
     if (i === hoveredCell.row && j === hoveredCell.col) {
-      classes += ' grid-cell-hover animate-wiggle';
+      classes += ' grid-cell-hover';
     } else if (distance <= 2) {
       classes += distance === 1 ? ' grid-cell-neighbor-1' : ' grid-cell-neighbor-2';
     }
 
     if (isLetter) {
-      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150 animate-wiggle' : 'hover:brightness-125 hover:animate-wiggle'}`;
+      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150' : 'hover:brightness-125'}`;
     } else {
       classes += ' text-cyber-blue/50';
     }

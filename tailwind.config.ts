@@ -36,16 +36,11 @@ export default {
           '0%': { transform: 'translateY(0)' },
           '100%': { transform: 'translateY(100vh)' },
         },
-        wiggle: {
-          '0%, 100%': { transform: 'rotate(-3deg)' },
-          '50%': { transform: 'rotate(3deg)' },
-        },
       },
       animation: {
         glow: 'glow 2s ease-in-out infinite',
         fadeIn: 'fadeIn 0.5s ease-in-out',
         scanline: 'scanline 8s linear infinite',
-        wiggle: 'wiggle 0.3s ease-in-out infinite',
       },
     },
   },
