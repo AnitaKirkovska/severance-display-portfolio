@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -80,6 +79,12 @@ const Index = () => {
     { row: 6, col: 6, letter: 'C', buttonId: 'article' },
     { row: 6, col: 7, letter: 'L', buttonId: 'article' },
     { row: 6, col: 8, letter: 'E', buttonId: 'article' },
+    { row: 6, col: 10, letter: 'L', buttonId: 'article' },
+    { row: 6, col: 11, letter: 'A', buttonId: 'article' },
+    { row: 6, col: 12, letter: 'T', buttonId: 'article' },
+    { row: 6, col: 13, letter: 'E', buttonId: 'article' },
+    { row: 6, col: 14, letter: 'S', buttonId: 'article' },
+    { row: 6, col: 15, letter: 'T', buttonId: 'article' },
     
     { row: 12, col: 3, letter: 'L', buttonId: 'linkedin' },
     { row: 12, col: 4, letter: 'I', buttonId: 'linkedin' },
@@ -89,6 +94,9 @@ const Index = () => {
     { row: 13, col: 4, letter: 'D', buttonId: 'linkedin' },
     { row: 13, col: 5, letter: 'I', buttonId: 'linkedin' },
     { row: 13, col: 6, letter: 'N', buttonId: 'linkedin' },
+    { row: 12, col: 8, letter: 'P', buttonId: 'linkedin' },
+    { row: 12, col: 9, letter: 'R', buttonId: 'linkedin' },
+    { row: 12, col: 10, letter: 'O', buttonId: 'linkedin' },
     
     { row: 23, col: 2, letter: 'P', buttonId: 'project' },
     { row: 23, col: 3, letter: 'R', buttonId: 'project' },
@@ -97,12 +105,18 @@ const Index = () => {
     { row: 23, col: 6, letter: 'E', buttonId: 'project' },
     { row: 23, col: 7, letter: 'C', buttonId: 'project' },
     { row: 23, col: 8, letter: 'T', buttonId: 'project' },
+    { row: 23, col: 10, letter: 'N', buttonId: 'project' },
+    { row: 23, col: 11, letter: 'E', buttonId: 'project' },
+    { row: 23, col: 12, letter: 'W', buttonId: 'project' },
     
     { row: 26, col: 2, letter: 'V', buttonId: 'video' },
     { row: 26, col: 3, letter: 'I', buttonId: 'video' },
     { row: 26, col: 4, letter: 'D', buttonId: 'video' },
     { row: 26, col: 5, letter: 'E', buttonId: 'video' },
     { row: 26, col: 6, letter: 'O', buttonId: 'video' },
+    { row: 26, col: 8, letter: 'N', buttonId: 'video' },
+    { row: 26, col: 9, letter: 'O', buttonId: 'video' },
+    { row: 26, col: 10, letter: 'W', buttonId: 'video' },
     
     { row: 28, col: 2, letter: 'B', buttonId: 'call' },
     { row: 28, col: 3, letter: 'O', buttonId: 'call' },
@@ -112,6 +126,8 @@ const Index = () => {
     { row: 29, col: 3, letter: 'A', buttonId: 'call' },
     { row: 29, col: 4, letter: 'L', buttonId: 'call' },
     { row: 29, col: 5, letter: 'L', buttonId: 'call' },
+    { row: 28, col: 7, letter: 'M', buttonId: 'call' },
+    { row: 28, col: 8, letter: 'E', buttonId: 'call' },
   ];
 
   useEffect(() => {
@@ -394,4 +410,3 @@ const Index = () => {
 };
 
 export default Index;
-
