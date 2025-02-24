@@ -1,12 +1,16 @@
-# Welcome to your Lovable project
+# Severance-inspired portfolio
 
 ## Project info
+A portfolio site inspired by Severance, designed to feel like a professional profile—at least, from the outie perspective.
 
-**URL**: https://lovable.dev/projects/9858a4ce-b113-47fe-86d1-a9bf148951c4
+![Portfolio Preview](https://f9d6294b37cdbbb51eb70be7d329a9e0.cdn.bubble.io/f1740431577402x768641309568718800/CleanShot%202025-02-24%20at%2022.10.28%402x.png?_gl=1*lhr770*_gcl_au*MzQ2NTA5MzguMTc0MDQzMTU1OQ..*_ga*MTk4NTgxMDA4OS4xNzQwNDE1NjY1*_ga_BFPVR2DEE2*MTc0MDQxNTY2NC4xLjEuMTc0MDQzMTU3MS40MS4wLjA.)
+
+
+**URL**: [https://lovable.dev/projects/9858a4ce-b113-47fe-86d1-a9bf148951c4](https://severance-display-portfolio.lovable.app/)
 
 ## How can I edit this code?
 
-There are several ways of editing your application.
+There are several ways of editing this project.
 
 **Use Lovable**
 
