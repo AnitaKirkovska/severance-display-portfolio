@@ -12,20 +12,11 @@ const MusicToggle = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Cleanup any existing audio element
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
-
     const audio = new Audio();
-    audio.loop = true;
-    audio.preload = 'auto';
-    audio.volume = 0.5;
-
+    
     const handleCanPlay = () => {
       setIsLoading(false);
-      console.log("Audio is ready to play");
+      console.log("Audio loaded successfully and ready to play");
     };
 
     const handleError = (e: Event) => {
@@ -33,7 +24,8 @@ const MusicToggle = () => {
       console.error("Audio loading error:", {
         error: target.error,
         networkState: target.networkState,
-        readyState: target.readyState
+        readyState: target.readyState,
+        src: target.src
       });
       
       toast({
@@ -44,8 +36,13 @@ const MusicToggle = () => {
       setIsLoading(false);
     };
 
+    const handleLoadStart = () => {
+      console.log("Audio started loading");
+      setIsLoading(true);
+    };
+
     const handlePlay = () => {
-      console.log("Audio playback started");
+      console.log("Audio playback started successfully");
       setIsPlaying(true);
     };
 
@@ -54,19 +51,33 @@ const MusicToggle = () => {
       setIsPlaying(false);
     };
 
+    // Configure audio
+    audio.loop = true;
+    audio.preload = 'auto';
+    audio.volume = 0.5;
+
+    // Add all event listeners
+    audio.addEventListener('loadstart', handleLoadStart);
     audio.addEventListener('canplay', handleCanPlay);
     audio.addEventListener('error', handleError);
     audio.addEventListener('play', handlePlay);
     audio.addEventListener('pause', handlePause);
+
+    // Set source after adding event listeners
     audio.src = MUSIC_URL;
     audioRef.current = audio;
-    
+
+    // Clean up function
     return () => {
-      audio.removeEventListener('canplay', handleCanPlay);
-      audio.removeEventListener('error', handleError);
-      audio.removeEventListener('play', handlePlay);
-      audio.removeEventListener('pause', handlePause);
-      audio.pause();
+      if (audio) {
+        audio.removeEventListener('loadstart', handleLoadStart);
+        audio.removeEventListener('canplay', handleCanPlay);
+        audio.removeEventListener('error', handleError);
+        audio.removeEventListener('play', handlePlay);
+        audio.removeEventListener('pause', handlePause);
+        audio.pause();
+        audio.src = '';
+      }
       audioRef.current = null;
     };
   }, [toast]);
@@ -75,15 +86,15 @@ const MusicToggle = () => {
     if (!audioRef.current || isLoading) return;
     
     try {
-      console.log("Attempting to toggle music...");
       if (isPlaying) {
-        console.log("Pausing music...");
+        console.log("Attempting to pause music...");
         audioRef.current.pause();
       } else {
-        console.log("Starting music playback...");
+        console.log("Attempting to play music...");
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
           await playPromise;
+          console.log("Play promise resolved successfully");
         }
       }
     } catch (error) {
