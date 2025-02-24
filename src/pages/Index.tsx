@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -252,7 +253,7 @@ const Index = () => {
         </div>
       </header>
 
-      <div className="cyber-grid pt-20">
+      <div className="cyber-grid pt-20 mb-24">
         <div className="max-w-full overflow-x-auto px-2 md:px-0">
           <div className="inline-block min-w-full">
             {grid.map((row, i) => (
@@ -287,7 +288,7 @@ const Index = () => {
 
       <div className="scan-line animate-scanline" />
       
-      <main className="fixed bottom-4 md:bottom-20 left-1/2 -translate-x-1/2 w-full px-4">
+      <main className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 w-full px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-4xl mx-auto">
           {navButtons.map((button) => (
             <div key={button.id} className="flex flex-col space-y-1 md:space-y-2 relative">
@@ -334,3 +335,4 @@ const Index = () => {
 };
 
 export default Index;
+
