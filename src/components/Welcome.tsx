@@ -24,19 +24,16 @@ const Welcome = ({ onClose }: WelcomeProps) => {
             className="h-16 md:h-20 w-auto mx-auto mb-6 animate-glow"
           />
           
-          <div className="space-y-4 text-cyber-blue">
-            <h2 className="text-xl md:text-2xl font-bold tracking-wider">HELLO REFINER,</h2>
+          <div className="space-y-8 text-cyber-blue">
+            <div className="space-y-2">
+              <h2 className="text-xl md:text-2xl font-bold tracking-wider">HELLO REFINER,</h2>
+              <p className="text-sm md:text-base">
+                Welcome to the portfolio of Anita Kirkovska.
+              </p>
+            </div>
             
-            <p className="text-sm md:text-base">
-              Welcome to the portfolio of Anita Kirkovska.
-            </p>
-            
-            <p className="text-sm md:text-base">
-              Explore the grid. Find anomalies. Click to uncover what must be known.
-            </p>
-            
-            <p className="text-sm md:text-base">
-              Inside are projects, experiments, and thoughts—yours to classify.
+            <p className="text-sm md:text-base leading-relaxed">
+              Explore the grid. Find anomalies. Click to uncover what must be known. Inside are projects, experiments, and thoughts—yours to classify.
             </p>
             
             <p className="text-sm md:text-base">
@@ -64,4 +61,3 @@ const Welcome = ({ onClose }: WelcomeProps) => {
 };
 
 export default Welcome;
-
