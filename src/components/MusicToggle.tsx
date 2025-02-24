@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
-const MUSIC_URL = 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3';
+const MUSIC_URL = 'https://jmp.sh/s/8zNbMBN4I6vfDFm4yA4P';
 
 const MusicToggle = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -124,3 +124,4 @@ const MusicToggle = () => {
 };
 
 export default MusicToggle;
+
