@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -259,8 +260,14 @@ const Index = () => {
     let classes = `grid-cell ${getAnimationClass(i, j)} transition-all duration-500`;
     
     if (isLetter) {
-      classes += ' text-cyber-blue cursor-pointer';
+      // Letters should always maintain their color unless directly hovered
+      if (i === hoveredCell.row && j === hoveredCell.col) {
+        classes += ' text-cyber-blue cursor-pointer opacity-100';
+      } else {
+        classes += ' text-cyber-blue cursor-pointer opacity-70';
+      }
     } else {
+      // Numbers follow the distance-based opacity rules
       if (i === hoveredCell.row && j === hoveredCell.col) {
         classes += ' opacity-100 text-cyber-blue/50';
       } else if (distance <= 4) {
@@ -420,3 +427,4 @@ const Index = () => {
 };
 
 export default Index;
+
