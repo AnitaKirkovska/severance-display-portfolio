@@ -110,6 +110,14 @@ const Index = () => {
     generateGrid();
   }, []);
 
+  const getAnimationClass = (row: number, col: number) => {
+    const sum = row + col;
+    if (letterPositions.some(pos => pos.row === row && pos.col === col)) {
+      return ''; // Letters remain static
+    }
+    return sum % 3 === 0 ? 'float-horizontal' : sum % 3 === 1 ? 'float-vertical' : '';
+  };
+
   const handleCellClick = (row: number, col: number) => {
     const clickedPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
     
@@ -175,7 +183,7 @@ const Index = () => {
   };
 
   const getCellClassName = (i: number, j: number) => {
-    if (!hoveredCell) return 'grid-cell';
+    if (!hoveredCell) return `grid-cell ${getAnimationClass(i, j)}`;
     
     const position = letterPositions.find(pos => pos.row === i && pos.col === j);
     const isLetter = !!position;
@@ -189,7 +197,7 @@ const Index = () => {
       Math.abs(j - hoveredCell.col)
     );
 
-    let classes = 'grid-cell';
+    let classes = `grid-cell ${getAnimationClass(i, j)}`;
     
     if (i === hoveredCell.row && j === hoveredCell.col) {
       classes += ' grid-cell-hover';
