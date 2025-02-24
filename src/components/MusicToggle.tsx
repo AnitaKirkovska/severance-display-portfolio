@@ -112,7 +112,7 @@ const MusicToggle = () => {
     <button
       onClick={toggleMusic}
       disabled={isLoading}
-      className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-cyber-blue/10 hover:bg-cyber-blue/20 transition-colors border border-cyber-blue disabled:opacity-50"
+      className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-cyber-blue/10 hover:bg-cyber-blue/20 transition-colors border border-cyber-blue disabled:opacity-50 cursor-pointer"
       aria-label={isPlaying ? 'Mute music' : 'Play music'}
     >
       {isPlaying ? (
