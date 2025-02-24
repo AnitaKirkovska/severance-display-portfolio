@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -227,10 +228,10 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
       {showConfetti && <Confetti />}
-      <MusicToggle />
       
       <header className="fixed top-0 left-0 right-0 p-2 md:p-4 flex flex-col md:flex-row justify-between items-center border-b border-cyber-blue/20 bg-cyber-black/80 backdrop-blur-md z-50">
         <div className="flex items-center space-x-2 md:space-x-4 mb-2 md:mb-0">
+          <MusicToggle />
           <h1 className="text-xl md:text-2xl font-bold animate-glow">Anita K.</h1>
           <span className="text-xs md:text-sm opacity-50">FOUNDING GROWTH LEAD</span>
         </div>
@@ -334,3 +335,4 @@ const Index = () => {
 };
 
 export default Index;
+
