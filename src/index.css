@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -79,11 +78,11 @@
   }
 
   .grid-cell.float-horizontal {
-    @apply motion-safe:animate-float-horizontal;
+    @apply animate-float-horizontal motion-safe:animate-float-horizontal;
   }
 
   .grid-cell.float-vertical {
-    @apply motion-safe:animate-float-vertical;
+    @apply animate-float-vertical motion-safe:animate-float-vertical;
   }
 
   .grid-cell-hover {
