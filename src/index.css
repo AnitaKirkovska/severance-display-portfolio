@@ -79,11 +79,11 @@
   }
 
   .grid-cell.float-horizontal {
-    animation: floatLeftRight 15s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    @apply motion-safe:animate-float-horizontal;
   }
 
   .grid-cell.float-vertical {
-    animation: floatUpDown 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    @apply motion-safe:animate-float-vertical;
   }
 
   .grid-cell-hover {
@@ -100,6 +100,16 @@
 
   .grid-cell-neighbor-3 {
     @apply scale-115 text-white brightness-105;
+  }
+
+  @media (min-width: 768px) {
+    .grid-cell.float-horizontal {
+      animation: floatLeftRightDesktop 20s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
+
+    .grid-cell.float-vertical {
+      animation: floatUpDownDesktop 15s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    }
   }
 }
 
@@ -181,6 +191,36 @@
   }
 }
 
+@keyframes floatLeftRightDesktop {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(12px) rotate(3deg);
+  }
+  75% {
+    transform: translateX(-12px) rotate(-3deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes floatUpDownDesktop {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) scale(1.1) rotate(2deg);
+  }
+  66% {
+    transform: translateY(4px) scale(0.95) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
 @keyframes glow {
   0%, 100% { 
     text-shadow: 0 0 4px #00F0FF;
@@ -207,4 +247,3 @@
     transform: translateY(100vh);
   }
 }
-
