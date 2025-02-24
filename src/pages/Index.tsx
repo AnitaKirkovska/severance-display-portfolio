@@ -283,11 +283,6 @@ const Index = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-4xl mx-auto">
           {navButtons.map((button) => (
             <div key={button.id} className="flex flex-col space-y-1 md:space-y-2 relative">
-              {showLetters === button.id && foundLetters[button.id] && (
-                <div className="floating-letters">
-                  {foundLetters[button.id].join('')}
-                </div>
-              )}
               <a 
                 href={unlockedButtons.has(button.id) ? button.link : '#'}
                 target={button.link.startsWith('http') && unlockedButtons.has(button.id) ? "_blank" : undefined}
