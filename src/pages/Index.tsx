@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -281,7 +282,7 @@ const Index = () => {
           <MusicToggle />
           <div className="flex items-center gap-2">
             <h1 className="text-xl md:text-2xl font-bold animate-glow">Hi, meet my outie Anita K.</h1>
-            <span className="text-xs md:text-sm opacity-50">FOUNDING GROWTH LEAD</span>
+            <span className="text-xs md:text-sm opacity-50">FOUNDING GROWTH LEAD AT VELLUM</span>
           </div>
         </div>
         <div className="flex items-center space-x-4">
