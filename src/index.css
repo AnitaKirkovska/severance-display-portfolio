@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -55,7 +56,8 @@
   }
 
   .progress-bar-fill {
-    @apply h-full bg-cyber-blue transition-all duration-1000 ease-out;
+    @apply h-full bg-cyber-blue;
+    transition: width 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .progress-text {
@@ -144,7 +146,7 @@
     opacity: 1;
     transform: translate(var(--start-x), var(--start-y));
   }
-  75% {
+  65% {
     opacity: 1;
     transform: translate(var(--end-x), var(--end-y));
   }

@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -179,26 +180,30 @@ const Index = () => {
       setFloatingLetters(allLettersForButton);
       setAnimatingButton(buttonId);
       
+      // Reduce the initial animation time from 1000ms to 600ms
       setTimeout(() => {
         setShowLetters(buttonId);
         setFloatingLetters([]);
         
+        // Reduce the delay before updating found letters from 500ms to 300ms
         setTimeout(() => {
           setFoundLetters(prev => ({
             ...prev,
             [buttonId]: allLettersForButton.map(item => item.letter)
           }));
           
+          // Reduce the delay before hiding letters from 1000ms to 500ms
           setTimeout(() => {
             setShowLetters(null);
             
+            // Reduce the final delay from 500ms to 300ms
             setTimeout(() => {
               setAnimatingButton(null);
               setUnlockedButtons(prev => new Set([...prev, buttonId]));
-            }, 500);
-          }, 1000);
-        }, 500);
-      }, 1000);
+            }, 300);
+          }, 500);
+        }, 300);
+      }, 600);
     }
   };
 
