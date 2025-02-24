@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -64,82 +63,53 @@ const Index = () => {
     },
   ];
 
-  const decorativeLetters: LetterPosition[] = [
-    { row: 4, col: 5, letter: 'X', buttonId: 'none' },
-    { row: 4, col: 6, letter: 'Y', buttonId: 'none' },
-    { row: 5, col: 6, letter: 'Z', buttonId: 'none' },
-    { row: 5, col: 5, letter: 'W', buttonId: 'none' },
-    
-    { row: 4, col: 23, letter: 'P', buttonId: 'none' },
-    { row: 4, col: 24, letter: 'Q', buttonId: 'none' },
-    { row: 5, col: 24, letter: 'R', buttonId: 'none' },
-    { row: 5, col: 23, letter: 'S', buttonId: 'none' },
-    
-    { row: 13, col: 5, letter: 'F', buttonId: 'none' },
-    { row: 13, col: 6, letter: 'G', buttonId: 'none' },
-    { row: 14, col: 6, letter: 'H', buttonId: 'none' },
-    { row: 14, col: 5, letter: 'J', buttonId: 'none' },
-    
-    { row: 13, col: 23, letter: 'M', buttonId: 'none' },
-    { row: 13, col: 24, letter: 'N', buttonId: 'none' },
-    { row: 14, col: 24, letter: 'K', buttonId: 'none' },
-    { row: 14, col: 23, letter: 'L', buttonId: 'none' },
-    
-    { row: 22, col: 5, letter: 'A', buttonId: 'none' },
-    { row: 22, col: 6, letter: 'B', buttonId: 'none' },
-    
-    { row: 22, col: 23, letter: 'X', buttonId: 'none' },
-    { row: 22, col: 24, letter: 'Y', buttonId: 'none' },
-    { row: 23, col: 24, letter: 'Z', buttonId: 'none' },
-    { row: 23, col: 23, letter: 'W', buttonId: 'none' },
-  ];
-
   const letterPositions: LetterPosition[] = [
     { row: 4, col: 4, letter: 'A', buttonId: 'about' },
     { row: 3, col: 5, letter: 'B', buttonId: 'about' },
-    { row: 4, col: 5, letter: 'O', buttonId: 'about' },
-    { row: 4, col: 6, letter: 'U', buttonId: 'about' },
-    { row: 5, col: 6, letter: 'T', buttonId: 'about' },
+    { row: 3, col: 6, letter: 'O', buttonId: 'about' },
+    { row: 4, col: 7, letter: 'U', buttonId: 'about' },
+    { row: 5, col: 7, letter: 'T', buttonId: 'about' },
     { row: 6, col: 6, letter: 'M', buttonId: 'about' },
     { row: 6, col: 5, letter: 'E', buttonId: 'about' },
     
     { row: 4, col: 22, letter: 'L', buttonId: 'linkedin' },
     { row: 3, col: 23, letter: 'I', buttonId: 'linkedin' },
     { row: 3, col: 24, letter: 'N', buttonId: 'linkedin' },
-    { row: 4, col: 24, letter: 'K', buttonId: 'linkedin' },
-    { row: 5, col: 24, letter: 'E', buttonId: 'linkedin' },
-    { row: 5, col: 23, letter: 'D', buttonId: 'linkedin' },
-    { row: 6, col: 24, letter: 'I', buttonId: 'linkedin' },
+    { row: 4, col: 25, letter: 'K', buttonId: 'linkedin' },
+    { row: 5, col: 25, letter: 'E', buttonId: 'linkedin' },
+    { row: 6, col: 24, letter: 'D', buttonId: 'linkedin' },
+    { row: 6, col: 23, letter: 'I', buttonId: 'linkedin' },
     { row: 5, col: 22, letter: 'N', buttonId: 'linkedin' },
     
     { row: 13, col: 4, letter: 'A', buttonId: 'article' },
     { row: 12, col: 5, letter: 'R', buttonId: 'article' },
     { row: 12, col: 6, letter: 'T', buttonId: 'article' },
-    { row: 13, col: 6, letter: 'I', buttonId: 'article' },
-    { row: 14, col: 6, letter: 'C', buttonId: 'article' },
-    { row: 14, col: 5, letter: 'L', buttonId: 'article' },
+    { row: 13, col: 7, letter: 'I', buttonId: 'article' },
+    { row: 14, col: 7, letter: 'C', buttonId: 'article' },
+    { row: 15, col: 6, letter: 'L', buttonId: 'article' },
     { row: 15, col: 5, letter: 'E', buttonId: 'article' },
     
     { row: 13, col: 22, letter: 'P', buttonId: 'project' },
     { row: 12, col: 23, letter: 'R', buttonId: 'project' },
-    { row: 13, col: 23, letter: 'O', buttonId: 'project' },
-    { row: 13, col: 24, letter: 'J', buttonId: 'project' },
-    { row: 14, col: 24, letter: 'E', buttonId: 'project' },
+    { row: 12, col: 24, letter: 'O', buttonId: 'project' },
+    { row: 13, col: 25, letter: 'J', buttonId: 'project' },
+    { row: 14, col: 25, letter: 'E', buttonId: 'project' },
     { row: 15, col: 24, letter: 'C', buttonId: 'project' },
     { row: 15, col: 23, letter: 'T', buttonId: 'project' },
     
     { row: 22, col: 4, letter: 'V', buttonId: 'video' },
-    { row: 22, col: 5, letter: 'I', buttonId: 'video' },
-    { row: 22, col: 6, letter: 'D', buttonId: 'video' },
-    { row: 23, col: 6, letter: 'E', buttonId: 'video' },
-    { row: 23, col: 5, letter: 'O', buttonId: 'video' },
+    { row: 21, col: 5, letter: 'I', buttonId: 'video' },
+    { row: 21, col: 6, letter: 'D', buttonId: 'video' },
+    { row: 22, col: 7, letter: 'E', buttonId: 'video' },
+    { row: 23, col: 6, letter: 'O', buttonId: 'video' },
     
     { row: 22, col: 22, letter: 'B', buttonId: 'call' },
-    { row: 22, col: 23, letter: 'O', buttonId: 'call' },
-    { row: 22, col: 24, letter: 'O', buttonId: 'call' },
-    { row: 23, col: 24, letter: 'K', buttonId: 'call' },
-    { row: 24, col: 24, letter: 'C', buttonId: 'call' },
-    { row: 24, col: 23, letter: 'A', buttonId: 'call' },
+    { row: 21, col: 23, letter: 'O', buttonId: 'call' },
+    { row: 21, col: 24, letter: 'O', buttonId: 'call' },
+    { row: 22, col: 25, letter: 'K', buttonId: 'call' },
+    { row: 23, col: 25, letter: 'C', buttonId: 'call' },
+    { row: 24, col: 24, letter: 'A', buttonId: 'call' },
+    { row: 24, col: 23, letter: 'L', buttonId: 'call' },
     { row: 23, col: 22, letter: 'L', buttonId: 'call' },
   ];
 
@@ -259,28 +229,24 @@ const Index = () => {
 
     let classes = `grid-cell ${getAnimationClass(i, j)} transition-all duration-500`;
     
-    if (isLetter) {
-      // Letters should always maintain their color unless directly hovered
-      if (i === hoveredCell.row && j === hoveredCell.col) {
-        classes += ' text-cyber-blue cursor-pointer opacity-100';
+    if (i === hoveredCell.row && j === hoveredCell.col) {
+      classes += ' grid-cell-hover opacity-100';
+    } else if (distance <= 4) {
+      if (distance <= 1.5) {
+        classes += ' grid-cell-neighbor-1 opacity-90';
+      } else if (distance <= 2.5) {
+        classes += ' grid-cell-neighbor-2 opacity-70';
       } else {
-        classes += ' text-cyber-blue cursor-pointer opacity-70';
+        classes += ' grid-cell-neighbor-3 opacity-50';
       }
     } else {
-      // Numbers follow the distance-based opacity rules
-      if (i === hoveredCell.row && j === hoveredCell.col) {
-        classes += ' opacity-100 text-cyber-blue/50';
-      } else if (distance <= 4) {
-        if (distance <= 1.5) {
-          classes += ' opacity-90 text-cyber-blue/50';
-        } else if (distance <= 2.5) {
-          classes += ' opacity-70 text-cyber-blue/50';
-        } else {
-          classes += ' opacity-50 text-cyber-blue/50';
-        }
-      } else {
-        classes += ' opacity-30 text-cyber-blue/50';
-      }
+      classes += ' opacity-30';
+    }
+
+    if (isLetter) {
+      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150' : ''}`;
+    } else {
+      classes += ' text-cyber-blue/50';
     }
 
     return classes;
@@ -427,4 +393,3 @@ const Index = () => {
 };
 
 export default Index;
-
