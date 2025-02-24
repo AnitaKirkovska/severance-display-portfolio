@@ -69,11 +69,11 @@
   }
 
   .grid-cell.float-horizontal {
-    animation: floatLeftRight 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    animation: floatLeftRight 10s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
   .grid-cell.float-vertical {
-    animation: floatUpDown 4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    animation: floatUpDown 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
   .grid-cell-hover {
