@@ -98,8 +98,8 @@ const Index = () => {
         newGrid.push(row);
       }
 
-      letterPositions.forEach(({ row, col, letter }) => {
-        if (newGrid[row] && newGrid[row][col]) {
+      letterPositions.forEach(({ row, col, letter, buttonId }) => {
+        if (!foundLetters[buttonId] && newGrid[row] && newGrid[row][col]) {
           newGrid[row][col] = letter;
         }
       });
@@ -108,7 +108,7 @@ const Index = () => {
     };
 
     generateGrid();
-  }, []);
+  }, [foundLetters]);
 
   const getAnimationClass = (row: number, col: number) => {
     const sum = row + col;
