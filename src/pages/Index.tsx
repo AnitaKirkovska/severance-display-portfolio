@@ -59,14 +59,15 @@ const Index = () => {
     { row: 2, col: 7, letter: 'M', buttonId: 'about' },
     { row: 2, col: 8, letter: 'E', buttonId: 'about' },
     
+    // LinkedIn letters in a 2x4 grid
     { row: 12, col: 3, letter: 'L', buttonId: 'linkedin' },
     { row: 12, col: 4, letter: 'I', buttonId: 'linkedin' },
     { row: 12, col: 5, letter: 'N', buttonId: 'linkedin' },
     { row: 12, col: 6, letter: 'K', buttonId: 'linkedin' },
-    { row: 12, col: 7, letter: 'E', buttonId: 'linkedin' },
-    { row: 12, col: 8, letter: 'D', buttonId: 'linkedin' },
-    { row: 12, col: 9, letter: 'I', buttonId: 'linkedin' },
-    { row: 12, col: 10, letter: 'N', buttonId: 'linkedin' },
+    { row: 13, col: 3, letter: 'E', buttonId: 'linkedin' },
+    { row: 13, col: 4, letter: 'D', buttonId: 'linkedin' },
+    { row: 13, col: 5, letter: 'I', buttonId: 'linkedin' },
+    { row: 13, col: 6, letter: 'N', buttonId: 'linkedin' },
     
     { row: 18, col: 2, letter: 'A', buttonId: 'article' },
     { row: 18, col: 3, letter: 'R', buttonId: 'article' },
