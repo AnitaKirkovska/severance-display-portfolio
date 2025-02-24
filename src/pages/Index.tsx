@@ -230,10 +230,12 @@ const Index = () => {
       {showConfetti && <Confetti />}
       
       <header className="fixed top-0 left-0 right-0 p-2 md:p-4 flex flex-col md:flex-row justify-between items-center border-b border-cyber-blue/20 bg-cyber-black/80 backdrop-blur-md z-50">
-        <div className="flex items-center space-x-2 md:space-x-4 mb-2 md:mb-0">
+        <div className="flex items-center gap-4 mb-2 md:mb-0">
           <MusicToggle />
-          <h1 className="text-xl md:text-2xl font-bold animate-glow">Anita K.</h1>
-          <span className="text-xs md:text-sm opacity-50">FOUNDING GROWTH LEAD</span>
+          <div className="flex items-center gap-2">
+            <h1 className="text-xl md:text-2xl font-bold animate-glow">Anita K.</h1>
+            <span className="text-xs md:text-sm opacity-50">FOUNDING GROWTH LEAD</span>
+          </div>
         </div>
         <div className="flex items-center space-x-2 md:space-x-4">
           <div className="flex items-center space-x-2">

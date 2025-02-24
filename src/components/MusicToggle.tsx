@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from 'react';
 import { Volume2, VolumeX } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
-// Using a reliable direct MP3 URL for testing
 const MUSIC_URL = 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3';
 
 const MusicToggle = () => {
@@ -16,7 +15,7 @@ const MusicToggle = () => {
     const audio = new Audio();
     audio.loop = true;
     audio.preload = 'auto';
-    audio.volume = 0.5; // Set a moderate volume level
+    audio.volume = 0.5;
 
     const handleCanPlay = () => {
       setIsLoading(false);
@@ -95,7 +94,7 @@ const MusicToggle = () => {
     <button
       onClick={toggleMusic}
       disabled={isLoading}
-      className="fixed top-4 right-4 md:top-6 md:right-6 z-50 p-2 rounded-full bg-cyber-blue/10 hover:bg-cyber-blue/20 transition-colors border border-cyber-blue disabled:opacity-50"
+      className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-cyber-blue/10 hover:bg-cyber-blue/20 transition-colors border border-cyber-blue disabled:opacity-50"
       aria-label={isPlaying ? 'Mute music' : 'Play music'}
     >
       {isPlaying ? (
