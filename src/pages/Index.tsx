@@ -72,6 +72,14 @@ const Index = () => {
     { row: 2, col: 7, letter: 'M', buttonId: 'about' },
     { row: 2, col: 8, letter: 'E', buttonId: 'about' },
     
+    { row: 6, col: 2, letter: 'A', buttonId: 'article' },
+    { row: 6, col: 3, letter: 'R', buttonId: 'article' },
+    { row: 6, col: 4, letter: 'T', buttonId: 'article' },
+    { row: 6, col: 5, letter: 'I', buttonId: 'article' },
+    { row: 6, col: 6, letter: 'C', buttonId: 'article' },
+    { row: 6, col: 7, letter: 'L', buttonId: 'article' },
+    { row: 6, col: 8, letter: 'E', buttonId: 'article' },
+    
     { row: 12, col: 3, letter: 'L', buttonId: 'linkedin' },
     { row: 12, col: 4, letter: 'I', buttonId: 'linkedin' },
     { row: 12, col: 5, letter: 'N', buttonId: 'linkedin' },
@@ -80,14 +88,6 @@ const Index = () => {
     { row: 13, col: 4, letter: 'D', buttonId: 'linkedin' },
     { row: 13, col: 5, letter: 'I', buttonId: 'linkedin' },
     { row: 13, col: 6, letter: 'N', buttonId: 'linkedin' },
-    
-    { row: 18, col: 2, letter: 'A', buttonId: 'article' },
-    { row: 18, col: 3, letter: 'R', buttonId: 'article' },
-    { row: 18, col: 4, letter: 'T', buttonId: 'article' },
-    { row: 18, col: 5, letter: 'I', buttonId: 'article' },
-    { row: 18, col: 6, letter: 'C', buttonId: 'article' },
-    { row: 18, col: 7, letter: 'L', buttonId: 'article' },
-    { row: 18, col: 8, letter: 'E', buttonId: 'article' },
     
     { row: 23, col: 2, letter: 'P', buttonId: 'project' },
     { row: 23, col: 3, letter: 'R', buttonId: 'project' },
