@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,8 +14,8 @@
   }
   
   .cyber-button {
-    @apply relative px-3 md:px-8 py-2 md:py-3 bg-transparent border border-cyber-blue text-cyber-blue 
-           hover:bg-cyber-blue/10 transition-all duration-300 overflow-hidden text-xs md:text-sm;
+    @apply relative px-2 md:px-4 lg:px-6 py-2 md:py-3 bg-transparent border border-cyber-blue text-cyber-blue 
+           hover:bg-cyber-blue/10 transition-all duration-300 overflow-hidden text-xs md:text-sm whitespace-nowrap;
   }
 
   .cyber-button.unlocked {
