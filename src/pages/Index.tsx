@@ -1,9 +1,9 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
 import { ChevronDown } from 'lucide-react';
 import Welcome from '../components/Welcome';
+import CompletionPopup from '../components/CompletionPopup';
 
 interface LetterPosition {
   row: number;
@@ -14,6 +14,7 @@ interface LetterPosition {
 
 const Index = () => {
   const [showWelcome, setShowWelcome] = useState(true);
+  const [showCompletion, setShowCompletion] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
   const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
   const [grid, setGrid] = useState<string[][]>([]);
@@ -180,23 +181,19 @@ const Index = () => {
       setFloatingLetters(allLettersForButton);
       setAnimatingButton(buttonId);
       
-      // Reduce the initial animation time from 1000ms to 600ms
       setTimeout(() => {
         setShowLetters(buttonId);
         setFloatingLetters([]);
         
-        // Reduce the delay before updating found letters from 500ms to 300ms
         setTimeout(() => {
           setFoundLetters(prev => ({
             ...prev,
             [buttonId]: allLettersForButton.map(item => item.letter)
           }));
           
-          // Reduce the delay before hiding letters from 1000ms to 500ms
           setTimeout(() => {
             setShowLetters(null);
             
-            // Reduce the final delay from 500ms to 300ms
             setTimeout(() => {
               setAnimatingButton(null);
               setUnlockedButtons(prev => new Set([...prev, buttonId]));
@@ -258,6 +255,7 @@ const Index = () => {
   useEffect(() => {
     if (unlockedButtons.size === navButtons.length) {
       setShowConfetti(true);
+      setShowCompletion(true);
       setTimeout(() => {
         setShowConfetti(false);
       }, 5000);
@@ -275,6 +273,7 @@ const Index = () => {
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
       {showWelcome && <Welcome onClose={() => setShowWelcome(false)} />}
+      {showCompletion && <CompletionPopup onClose={() => setShowCompletion(false)} />}
       {showConfetti && <Confetti />}
       
       <header className="fixed top-0 left-0 right-0 p-2 md:p-4 flex flex-col md:flex-row justify-between items-center border-b border-cyber-blue/20 bg-cyber-black/80 backdrop-blur-md z-50">
