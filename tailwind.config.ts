@@ -23,6 +23,10 @@ export default {
           gray: "#2A2A2A",
         },
       },
+      scale: {
+        '115': '1.15',
+        '135': '1.35'
+      },
       keyframes: {
         glow: {
           '0%, 100%': { textShadow: '0 0 4px #00F0FF' },
@@ -46,3 +50,4 @@ export default {
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
