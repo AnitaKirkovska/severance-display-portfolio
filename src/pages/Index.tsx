@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -64,37 +63,30 @@ const Index = () => {
     },
   ];
 
-  // Adding decorative letters positions within each circle
   const decorativeLetters: LetterPosition[] = [
-    // ABOUT ME inner circle
     { row: 4, col: 5, letter: 'X', buttonId: 'none' },
     { row: 4, col: 6, letter: 'Y', buttonId: 'none' },
     { row: 5, col: 6, letter: 'Z', buttonId: 'none' },
     { row: 5, col: 5, letter: 'W', buttonId: 'none' },
     
-    // LINKEDIN inner circle
     { row: 4, col: 23, letter: 'P', buttonId: 'none' },
     { row: 4, col: 24, letter: 'Q', buttonId: 'none' },
     { row: 5, col: 24, letter: 'R', buttonId: 'none' },
     { row: 5, col: 23, letter: 'S', buttonId: 'none' },
     
-    // ARTICLE inner circle
     { row: 13, col: 5, letter: 'F', buttonId: 'none' },
     { row: 13, col: 6, letter: 'G', buttonId: 'none' },
     { row: 14, col: 6, letter: 'H', buttonId: 'none' },
     { row: 14, col: 5, letter: 'J', buttonId: 'none' },
     
-    // PROJECT inner circle
     { row: 13, col: 23, letter: 'M', buttonId: 'none' },
     { row: 13, col: 24, letter: 'N', buttonId: 'none' },
     { row: 14, col: 24, letter: 'K', buttonId: 'none' },
     { row: 14, col: 23, letter: 'L', buttonId: 'none' },
     
-    // VIDEO inner circle
     { row: 22, col: 5, letter: 'A', buttonId: 'none' },
     { row: 22, col: 6, letter: 'B', buttonId: 'none' },
     
-    // BOOK CALL inner circle
     { row: 22, col: 23, letter: 'X', buttonId: 'none' },
     { row: 22, col: 24, letter: 'Y', buttonId: 'none' },
     { row: 23, col: 24, letter: 'Z', buttonId: 'none' },
@@ -102,61 +94,53 @@ const Index = () => {
   ];
 
   const letterPositions: LetterPosition[] = [
-    // ABOUT ME - moved O, U, T inside
     { row: 4, col: 4, letter: 'A', buttonId: 'about' },
     { row: 3, col: 5, letter: 'B', buttonId: 'about' },
-    { row: 4, col: 5, letter: 'O', buttonId: 'about' },    // Moved inside
-    { row: 4, col: 6, letter: 'U', buttonId: 'about' },    // Moved inside
-    { row: 5, col: 6, letter: 'T', buttonId: 'about' },    // Moved inside
+    { row: 4, col: 5, letter: 'O', buttonId: 'about' },
+    { row: 4, col: 6, letter: 'U', buttonId: 'about' },
+    { row: 5, col: 6, letter: 'T', buttonId: 'about' },
     { row: 6, col: 6, letter: 'M', buttonId: 'about' },
     { row: 6, col: 5, letter: 'E', buttonId: 'about' },
     
-    // LINKEDIN - moved K, E, D inside
     { row: 4, col: 22, letter: 'L', buttonId: 'linkedin' },
     { row: 3, col: 23, letter: 'I', buttonId: 'linkedin' },
     { row: 3, col: 24, letter: 'N', buttonId: 'linkedin' },
-    { row: 4, col: 24, letter: 'K', buttonId: 'linkedin' }, // Moved inside
-    { row: 5, col: 24, letter: 'E', buttonId: 'linkedin' }, // Moved inside
-    { row: 5, col: 23, letter: 'D', buttonId: 'linkedin' }, // Moved inside
+    { row: 4, col: 24, letter: 'K', buttonId: 'linkedin' },
+    { row: 5, col: 24, letter: 'E', buttonId: 'linkedin' },
+    { row: 5, col: 23, letter: 'D', buttonId: 'linkedin' },
     { row: 6, col: 24, letter: 'I', buttonId: 'linkedin' },
     { row: 5, col: 22, letter: 'N', buttonId: 'linkedin' },
     
-    // ARTICLE - moved I, C, L inside
     { row: 13, col: 4, letter: 'A', buttonId: 'article' },
     { row: 12, col: 5, letter: 'R', buttonId: 'article' },
     { row: 12, col: 6, letter: 'T', buttonId: 'article' },
-    { row: 13, col: 6, letter: 'I', buttonId: 'article' },  // Moved inside
-    { row: 14, col: 6, letter: 'C', buttonId: 'article' },  // Moved inside
-    { row: 14, col: 5, letter: 'L', buttonId: 'article' },  // Moved inside
+    { row: 13, col: 6, letter: 'I', buttonId: 'article' },
+    { row: 14, col: 6, letter: 'C', buttonId: 'article' },
+    { row: 14, col: 5, letter: 'L', buttonId: 'article' },
     { row: 15, col: 5, letter: 'E', buttonId: 'article' },
     
-    // PROJECT - moved O, J, E inside
     { row: 13, col: 22, letter: 'P', buttonId: 'project' },
     { row: 12, col: 23, letter: 'R', buttonId: 'project' },
-    { row: 13, col: 23, letter: 'O', buttonId: 'project' }, // Moved inside
-    { row: 13, col: 24, letter: 'J', buttonId: 'project' }, // Moved inside
-    { row: 14, col: 24, letter: 'E', buttonId: 'project' }, // Moved inside
+    { row: 13, col: 23, letter: 'O', buttonId: 'project' },
+    { row: 13, col: 24, letter: 'J', buttonId: 'project' },
+    { row: 14, col: 24, letter: 'E', buttonId: 'project' },
     { row: 15, col: 24, letter: 'C', buttonId: 'project' },
     { row: 15, col: 23, letter: 'T', buttonId: 'project' },
     
-    // VIDEO - moved I, D inside
     { row: 22, col: 4, letter: 'V', buttonId: 'video' },
-    { row: 22, col: 5, letter: 'I', buttonId: 'video' },    // Moved inside
-    { row: 22, col: 6, letter: 'D', buttonId: 'video' },    // Moved inside
+    { row: 22, col: 5, letter: 'I', buttonId: 'video' },
+    { row: 22, col: 6, letter: 'D', buttonId: 'video' },
     { row: 23, col: 6, letter: 'E', buttonId: 'video' },
     { row: 23, col: 5, letter: 'O', buttonId: 'video' },
     
-    // BOOK CALL - moved O, O, K inside
     { row: 22, col: 22, letter: 'B', buttonId: 'call' },
-    { row: 22, col: 23, letter: 'O', buttonId: 'call' },    // Moved inside
-    { row: 22, col: 24, letter: 'O', buttonId: 'call' },    // Moved inside
-    { row: 23, col: 24, letter: 'K', buttonId: 'call' },    // Moved inside
+    { row: 22, col: 23, letter: 'O', buttonId: 'call' },
+    { row: 22, col: 24, letter: 'O', buttonId: 'call' },
+    { row: 23, col: 24, letter: 'K', buttonId: 'call' },
     { row: 24, col: 24, letter: 'C', buttonId: 'call' },
     { row: 24, col: 23, letter: 'A', buttonId: 'call' },
     { row: 23, col: 22, letter: 'L', buttonId: 'call' },
   ];
-
-  // We no longer need the decorativeLetters array since we're using the actual phrase letters
 
   useEffect(() => {
     const generateGrid = () => {
@@ -195,7 +179,6 @@ const Index = () => {
     return sum % 3 === 0 ? 'float-horizontal' : sum % 3 === 1 ? 'float-vertical' : '';
   };
 
-  // Update handleCellClick to only work with non-decorative letters
   const handleCellClick = (row: number, col: number) => {
     const clickedPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
     
@@ -275,14 +258,9 @@ const Index = () => {
 
     let classes = `grid-cell ${getAnimationClass(i, j)} transition-all duration-500`;
     
-    // If it's a letter, maintain its color unless directly hovered
     if (isLetter) {
       classes += ' text-cyber-blue cursor-pointer';
-      if (i === hoveredCell.row && j === hoveredCell.col) {
-        classes += ' brightness-150';
-      }
     } else {
-      // For numbers, apply the opacity fade effect
       if (i === hoveredCell.row && j === hoveredCell.col) {
         classes += ' opacity-100 text-cyber-blue/50';
       } else if (distance <= 4) {
@@ -442,4 +420,3 @@ const Index = () => {
 };
 
 export default Index;
-
