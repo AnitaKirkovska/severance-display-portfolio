@@ -101,8 +101,13 @@ const Index = () => {
       }
 
       letterPositions.forEach(({ row, col, letter, buttonId }) => {
-        if (!foundLetters[buttonId] && newGrid[row] && newGrid[row][col]) {
+        // Check if the letter's button has been found
+        const isButtonComplete = foundLetters[buttonId];
+        if (!isButtonComplete && newGrid[row] && newGrid[row][col]) {
           newGrid[row][col] = letter;
+        } else if (isButtonComplete && newGrid[row] && newGrid[row][col]) {
+          // Leave a blank space (empty string) where the letter was
+          newGrid[row][col] = ' ';
         }
       });
       
@@ -341,4 +346,3 @@ const Index = () => {
 };
 
 export default Index;
-
