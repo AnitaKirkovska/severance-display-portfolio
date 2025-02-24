@@ -176,7 +176,7 @@
     transform: translateX(0);
   }
   50% {
-    transform: translateX(3px);
+    transform: translateX(8px);
   }
   100% {
     transform: translateX(0);
@@ -188,9 +188,10 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-3px);
+    transform: translateY(-8px);
   }
   100% {
     transform: translateY(0);
   }
 }
+
