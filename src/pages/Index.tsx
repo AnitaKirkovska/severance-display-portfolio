@@ -285,16 +285,16 @@ const Index = () => {
       {showConfetti && <Confetti />}
       
       <header className="fixed top-0 left-0 right-0 p-2 md:p-4 border-b border-cyber-blue/20 bg-cyber-black/80 backdrop-blur-md z-50">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between max-w-6xl mx-auto gap-2 md:gap-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-4">
-            <div className="flex items-center gap-2 md:gap-4">
+        <div className="flex flex-col items-center justify-center max-w-6xl mx-auto gap-2 md:gap-4">
+          <div className="flex flex-col items-center text-center gap-1 md:gap-4">
+            <div className="flex items-center justify-center gap-2 md:gap-4">
               <MusicToggle />
               <h1 className="text-sm md:text-xl lg:text-2xl font-bold animate-glow">Hi, meet my outie Anita K.</h1>
             </div>
-            <span className="text-[10px] md:text-xs lg:text-sm opacity-50 md:ml-0">FOUNDING GROWTH LEAD AT VELLUM</span>
+            <span className="text-[10px] md:text-xs lg:text-sm opacity-50">FOUNDING GROWTH LEAD AT VELLUM</span>
           </div>
-          <div className="flex items-center justify-between md:justify-end gap-2 md:gap-4">
-            <span className="font-mono text-xs md:text-sm text-cyber-blue animate-glow order-1 md:order-none">
+          <div className="flex items-center justify-center gap-2 md:gap-4">
+            <span className="font-mono text-xs md:text-sm text-cyber-blue animate-glow">
               {calculateCompletionPercentage()}% Complete
             </span>
             <img 
