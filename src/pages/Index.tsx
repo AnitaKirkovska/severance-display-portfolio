@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -253,6 +252,12 @@ const Index = () => {
     return classes;
   };
 
+  const calculateCompletionPercentage = () => {
+    const totalButtons = navButtons.length;
+    const unlockedCount = unlockedButtons.size;
+    return Math.floor((unlockedCount / totalButtons) * 100);
+  };
+
   useEffect(() => {
     if (unlockedButtons.size === navButtons.length) {
       setShowConfetti(true);
@@ -286,6 +291,9 @@ const Index = () => {
           </div>
         </div>
         <div className="flex items-center space-x-4">
+          <span className="font-mono text-cyber-blue animate-glow">
+            {calculateCompletionPercentage().toString().padStart(2, '0')}% Complete
+          </span>
           <img 
             src="/lovable-uploads/2eaab830-e639-4270-ba5f-4c23f9102f0d.png"
             alt="LUMON Logo"
