@@ -133,7 +133,7 @@ const Index = () => {
   useEffect(() => {
     const generateGrid = () => {
       const rows = 30;
-      const cols = 20;
+      const cols = 30;
       const newGrid: string[][] = [];
       
       for (let i = 0; i < rows; i++) {
@@ -325,12 +325,12 @@ const Index = () => {
       <div className="cyber-grid pt-20 pb-32 md:pb-40">
         <div 
           ref={gridRef}
-          className="max-w-full overflow-y-auto h-[60vh] px-2 md:px-0 relative scroll-smooth"
+          className="max-w-screen w-full overflow-y-auto h-[60vh] px-2 md:px-0 relative scroll-smooth"
           onScroll={handleScroll}
         >
-          <div className="inline-block min-w-full">
+          <div className="flex flex-col items-center">
             {grid.map((row, i) => (
-              <div key={i} className="flex justify-center gap-1 sm:gap-2 md:gap-4 lg:gap-6">
+              <div key={i} className="flex justify-center gap-1 sm:gap-2 md:gap-3 lg:gap-4">
                 {row.map((cell, j) => (
                   <span
                     id={`cell-${i}-${j}`}

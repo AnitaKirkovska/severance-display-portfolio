@@ -10,7 +10,7 @@
 
 @layer components {
   .cyber-grid {
-    @apply fixed inset-0 flex flex-col items-center justify-center opacity-70 pointer-events-auto select-none gap-1 md:gap-2 lg:gap-3 overflow-x-hidden;
+    @apply fixed inset-0 flex flex-col items-center justify-center opacity-70 pointer-events-auto select-none gap-1 md:gap-2 lg:gap-3;
   }
   
   .cyber-button {
@@ -73,7 +73,7 @@
   }
 
   .grid-cell {
-    @apply text-xs sm:text-sm md:text-base lg:text-lg w-4 h-4 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-8 lg:h-8 
+    @apply text-xs sm:text-sm md:text-base lg:text-lg w-3 h-3 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 
            flex items-center justify-center transition-all duration-300 ease-in-out transform;
   }
 
