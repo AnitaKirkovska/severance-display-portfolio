@@ -12,6 +12,12 @@ const MusicToggle = () => {
   const { toast } = useToast();
 
   useEffect(() => {
+    // Cleanup any existing audio element
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+
     const audio = new Audio();
     audio.loop = true;
     audio.preload = 'auto';
@@ -107,4 +113,3 @@ const MusicToggle = () => {
 };
 
 export default MusicToggle;
-
