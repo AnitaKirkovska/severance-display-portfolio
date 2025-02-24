@@ -286,7 +286,7 @@ const Index = () => {
         </div>
       </header>
 
-      <div className="cyber-grid pt-20">
+      <div className="cyber-grid pt-20 pb-32 md:pb-40">
         <div 
           ref={gridRef}
           className="max-w-full overflow-y-auto h-[60vh] px-2 md:px-0 relative scroll-smooth"
@@ -331,7 +331,7 @@ const Index = () => {
 
       <div className="scan-line animate-scanline" />
       
-      <main className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 w-full px-4">
+      <main className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 w-full px-4 bg-cyber-black/80 backdrop-blur-md py-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 max-w-4xl mx-auto">
           {navButtons.map((button) => (
             <div key={button.id} className="flex flex-col space-y-1 md:space-y-2 relative">
