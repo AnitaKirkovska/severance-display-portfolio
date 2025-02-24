@@ -227,17 +227,23 @@ const Index = () => {
       (hoveredButton === position.buttonId && unlockedButtons.has(position.buttonId))
     );
     
-    const distance = Math.max(
-      Math.abs(i - hoveredCell.row),
-      Math.abs(j - hoveredCell.col)
+    const distance = Math.sqrt(
+      Math.pow(i - hoveredCell.row, 2) + 
+      Math.pow(j - hoveredCell.col, 2)
     );
 
     let classes = `grid-cell ${getAnimationClass(i, j)}`;
     
     if (i === hoveredCell.row && j === hoveredCell.col) {
       classes += ' grid-cell-hover';
-    } else if (distance <= 2) {
-      classes += distance === 1 ? ' grid-cell-neighbor-1' : ' grid-cell-neighbor-2';
+    } else if (distance <= 3) {
+      if (distance <= 1.5) {
+        classes += ' grid-cell-neighbor-1';
+      } else if (distance <= 2.25) {
+        classes += ' grid-cell-neighbor-2';
+      } else {
+        classes += ' grid-cell-neighbor-3';
+      }
     }
 
     if (isLetter) {
