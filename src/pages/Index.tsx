@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -101,57 +102,61 @@ const Index = () => {
   ];
 
   const letterPositions: LetterPosition[] = [
+    // ABOUT ME - moved O, U, T inside
     { row: 4, col: 4, letter: 'A', buttonId: 'about' },
     { row: 3, col: 5, letter: 'B', buttonId: 'about' },
-    { row: 3, col: 6, letter: 'O', buttonId: 'about' },
-    { row: 4, col: 7, letter: 'U', buttonId: 'about' },
-    { row: 5, col: 7, letter: 'T', buttonId: 'about' },
+    { row: 4, col: 5, letter: 'O', buttonId: 'about' },    // Moved inside
+    { row: 4, col: 6, letter: 'U', buttonId: 'about' },    // Moved inside
+    { row: 5, col: 6, letter: 'T', buttonId: 'about' },    // Moved inside
     { row: 6, col: 6, letter: 'M', buttonId: 'about' },
     { row: 6, col: 5, letter: 'E', buttonId: 'about' },
     
+    // LINKEDIN - moved K, E, D inside
     { row: 4, col: 22, letter: 'L', buttonId: 'linkedin' },
     { row: 3, col: 23, letter: 'I', buttonId: 'linkedin' },
     { row: 3, col: 24, letter: 'N', buttonId: 'linkedin' },
-    { row: 4, col: 25, letter: 'K', buttonId: 'linkedin' },
-    { row: 5, col: 25, letter: 'E', buttonId: 'linkedin' },
-    { row: 6, col: 24, letter: 'D', buttonId: 'linkedin' },
-    { row: 6, col: 23, letter: 'I', buttonId: 'linkedin' },
+    { row: 4, col: 24, letter: 'K', buttonId: 'linkedin' }, // Moved inside
+    { row: 5, col: 24, letter: 'E', buttonId: 'linkedin' }, // Moved inside
+    { row: 5, col: 23, letter: 'D', buttonId: 'linkedin' }, // Moved inside
+    { row: 6, col: 24, letter: 'I', buttonId: 'linkedin' },
     { row: 5, col: 22, letter: 'N', buttonId: 'linkedin' },
     
+    // ARTICLE - moved I, C, L inside
     { row: 13, col: 4, letter: 'A', buttonId: 'article' },
     { row: 12, col: 5, letter: 'R', buttonId: 'article' },
     { row: 12, col: 6, letter: 'T', buttonId: 'article' },
-    { row: 13, col: 7, letter: 'I', buttonId: 'article' },
-    { row: 14, col: 7, letter: 'C', buttonId: 'article' },
-    { row: 15, col: 6, letter: 'L', buttonId: 'article' },
+    { row: 13, col: 6, letter: 'I', buttonId: 'article' },  // Moved inside
+    { row: 14, col: 6, letter: 'C', buttonId: 'article' },  // Moved inside
+    { row: 14, col: 5, letter: 'L', buttonId: 'article' },  // Moved inside
     { row: 15, col: 5, letter: 'E', buttonId: 'article' },
     
+    // PROJECT - moved O, J, E inside
     { row: 13, col: 22, letter: 'P', buttonId: 'project' },
     { row: 12, col: 23, letter: 'R', buttonId: 'project' },
-    { row: 12, col: 24, letter: 'O', buttonId: 'project' },
-    { row: 13, col: 25, letter: 'J', buttonId: 'project' },
-    { row: 14, col: 25, letter: 'E', buttonId: 'project' },
+    { row: 13, col: 23, letter: 'O', buttonId: 'project' }, // Moved inside
+    { row: 13, col: 24, letter: 'J', buttonId: 'project' }, // Moved inside
+    { row: 14, col: 24, letter: 'E', buttonId: 'project' }, // Moved inside
     { row: 15, col: 24, letter: 'C', buttonId: 'project' },
     { row: 15, col: 23, letter: 'T', buttonId: 'project' },
     
+    // VIDEO - moved I, D inside
     { row: 22, col: 4, letter: 'V', buttonId: 'video' },
-    { row: 21, col: 5, letter: 'I', buttonId: 'video' },
-    { row: 21, col: 6, letter: 'D', buttonId: 'video' },
-    { row: 22, col: 7, letter: 'E', buttonId: 'video' },
-    { row: 23, col: 6, letter: 'O', buttonId: 'video' },
+    { row: 22, col: 5, letter: 'I', buttonId: 'video' },    // Moved inside
+    { row: 22, col: 6, letter: 'D', buttonId: 'video' },    // Moved inside
+    { row: 23, col: 6, letter: 'E', buttonId: 'video' },
+    { row: 23, col: 5, letter: 'O', buttonId: 'video' },
     
+    // BOOK CALL - moved O, O, K inside
     { row: 22, col: 22, letter: 'B', buttonId: 'call' },
-    { row: 21, col: 23, letter: 'O', buttonId: 'call' },
-    { row: 21, col: 24, letter: 'O', buttonId: 'call' },
-    { row: 22, col: 25, letter: 'K', buttonId: 'call' },
-    { row: 23, col: 25, letter: 'C', buttonId: 'call' },
-    { row: 24, col: 24, letter: 'A', buttonId: 'call' },
-    { row: 24, col: 23, letter: 'L', buttonId: 'call' },
+    { row: 22, col: 23, letter: 'O', buttonId: 'call' },    // Moved inside
+    { row: 22, col: 24, letter: 'O', buttonId: 'call' },    // Moved inside
+    { row: 23, col: 24, letter: 'K', buttonId: 'call' },    // Moved inside
+    { row: 24, col: 24, letter: 'C', buttonId: 'call' },
+    { row: 24, col: 23, letter: 'A', buttonId: 'call' },
     { row: 23, col: 22, letter: 'L', buttonId: 'call' },
   ];
 
-  // Combine the original letter positions with decorative ones
-  const allLetterPositions = [...letterPositions, ...decorativeLetters];
+  // We no longer need the decorativeLetters array since we're using the actual phrase letters
 
   useEffect(() => {
     const generateGrid = () => {
@@ -167,8 +172,8 @@ const Index = () => {
         newGrid.push(row);
       }
 
-      allLetterPositions.forEach(({ row, col, letter, buttonId }) => {
-        const isButtonComplete = buttonId !== 'none' && foundLetters[buttonId];
+      letterPositions.forEach(({ row, col, letter, buttonId }) => {
+        const isButtonComplete = foundLetters[buttonId];
         if (!isButtonComplete && newGrid[row] && newGrid[row][col]) {
           newGrid[row][col] = letter;
         } else if (isButtonComplete && newGrid[row] && newGrid[row][col]) {
