@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
@@ -285,21 +286,21 @@ const Index = () => {
       
       <header className="fixed top-0 left-0 right-0 p-2 md:p-4 border-b border-cyber-blue/20 bg-cyber-black/80 backdrop-blur-md z-50">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between max-w-6xl mx-auto gap-2 md:gap-4">
-          <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
-            <div className="flex items-center gap-4">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
               <MusicToggle />
-              <h1 className="text-xl md:text-2xl font-bold animate-glow">Hi, meet my outie Anita K.</h1>
+              <h1 className="text-sm md:text-xl lg:text-2xl font-bold animate-glow">Hi, meet my outie Anita K.</h1>
             </div>
-            <span className="text-xs md:text-sm opacity-50 md:ml-0">FOUNDING GROWTH LEAD AT VELLUM</span>
+            <span className="text-[10px] md:text-xs lg:text-sm opacity-50 md:ml-0">FOUNDING GROWTH LEAD AT VELLUM</span>
           </div>
-          <div className="flex items-center justify-between md:justify-end gap-4">
-            <span className="font-mono text-cyber-blue animate-glow order-1 md:order-none">
+          <div className="flex items-center justify-between md:justify-end gap-2 md:gap-4">
+            <span className="font-mono text-xs md:text-sm text-cyber-blue animate-glow order-1 md:order-none">
               {calculateCompletionPercentage()}% Complete
             </span>
             <img 
               src="/lovable-uploads/2eaab830-e639-4270-ba5f-4c23f9102f0d.png"
               alt="LUMON Logo"
-              className="h-6 md:h-10 w-auto animate-glow"
+              className="hidden md:block h-6 md:h-8 lg:h-10 w-auto animate-glow"
             />
           </div>
         </div>
@@ -393,3 +394,4 @@ const Index = () => {
 };
 
 export default Index;
+
