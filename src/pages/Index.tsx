@@ -44,6 +44,11 @@ const Index = () => {
       link: 'https://www.vellum.ai/blog/how-can-agentic-capabilities-be-deployed-in-production-today' 
     },
     { 
+      id: 'project', 
+      label: 'LATEST PROJECT', 
+      link: 'https://www.vellum.ai/reasoning-models' 
+    },
+    { 
       id: 'call', 
       label: 'BOOK CALL', 
       link: 'https://calendly.com/anita-vellum/book-a-call' 
@@ -76,6 +81,15 @@ const Index = () => {
     { row: 18, col: 6, letter: 'C', buttonId: 'article' },
     { row: 18, col: 7, letter: 'L', buttonId: 'article' },
     { row: 18, col: 8, letter: 'E', buttonId: 'article' },
+    
+    // Latest Project letters
+    { row: 23, col: 2, letter: 'P', buttonId: 'project' },
+    { row: 23, col: 3, letter: 'R', buttonId: 'project' },
+    { row: 23, col: 4, letter: 'O', buttonId: 'project' },
+    { row: 23, col: 5, letter: 'J', buttonId: 'project' },
+    { row: 23, col: 6, letter: 'E', buttonId: 'project' },
+    { row: 23, col: 7, letter: 'C', buttonId: 'project' },
+    { row: 23, col: 8, letter: 'T', buttonId: 'project' },
     
     { row: 28, col: 2, letter: 'B', buttonId: 'call' },
     { row: 28, col: 3, letter: 'O', buttonId: 'call' },
