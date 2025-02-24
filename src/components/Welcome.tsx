@@ -28,23 +28,19 @@ const Welcome = ({ onClose }: WelcomeProps) => {
             <h2 className="text-xl md:text-2xl font-bold tracking-wider">HELLO REFINER,</h2>
             
             <p className="text-sm md:text-base">
-              You have arrived at the designated portfolio of Anita Kirkovska.
+              Welcome to the portfolio of Anita Kirkovska.
             </p>
             
             <p className="text-sm md:text-base">
-              Your presence here is acknowledged. Your curiosity is anticipated. Your discoveries are inevitable.
+              Explore the grid. Find anomalies. Click to uncover what must be known.
             </p>
             
             <p className="text-sm md:text-base">
-              To proceed, allow your cursor or finger to drift over the grid. Identify anomalies. Recognize patterns. Click to reveal what must be known.
+              Inside are projects, experiments, and thoughts—yours to classify.
             </p>
             
             <p className="text-sm md:text-base">
-              Inside, you will find artifacts of my work—projects, experiments, and thoughts, each awaiting classification in your mind.
-            </p>
-            
-            <p className="text-sm md:text-base">
-              Your compliance ensures continued access.
+              Your compliance ensures access.
             </p>
             
             <div className="pt-4 space-y-1">
