@@ -275,24 +275,27 @@ const Index = () => {
 
     let classes = `grid-cell ${getAnimationClass(i, j)} transition-all duration-500`;
     
-    if (i === hoveredCell.row && j === hoveredCell.col) {
-      classes += ' grid-cell-hover opacity-100';
-    } else if (distance <= 4) {
-      if (distance <= 1.5) {
-        classes += ' grid-cell-neighbor-1 opacity-90';
-      } else if (distance <= 2.5) {
-        classes += ' grid-cell-neighbor-2 opacity-70';
-      } else {
-        classes += ' grid-cell-neighbor-3 opacity-50';
+    // If it's a letter, maintain its color unless directly hovered
+    if (isLetter) {
+      classes += ' text-cyber-blue cursor-pointer';
+      if (i === hoveredCell.row && j === hoveredCell.col) {
+        classes += ' brightness-150';
       }
     } else {
-      classes += ' opacity-30';
-    }
-
-    if (isLetter) {
-      classes += ` text-cyber-blue cursor-pointer ${isHighlighted ? 'brightness-150' : ''}`;
-    } else {
-      classes += ' text-cyber-blue/50';
+      // For numbers, apply the opacity fade effect
+      if (i === hoveredCell.row && j === hoveredCell.col) {
+        classes += ' opacity-100 text-cyber-blue/50';
+      } else if (distance <= 4) {
+        if (distance <= 1.5) {
+          classes += ' opacity-90 text-cyber-blue/50';
+        } else if (distance <= 2.5) {
+          classes += ' opacity-70 text-cyber-blue/50';
+        } else {
+          classes += ' opacity-50 text-cyber-blue/50';
+        }
+      } else {
+        classes += ' opacity-30 text-cyber-blue/50';
+      }
     }
 
     return classes;
@@ -439,3 +442,4 @@ const Index = () => {
 };
 
 export default Index;
+
