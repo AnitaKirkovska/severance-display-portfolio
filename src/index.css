@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -69,11 +70,13 @@
   }
 
   .grid-cell.float-horizontal {
-    animation: floatLeftRight 10s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    @apply md:animate-[floatLeftRight_10s_cubic-bezier(0.45,0,0.55,1)_infinite];
+    animation: floatLeftRight 15s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
   .grid-cell.float-vertical {
-    animation: floatUpDown 8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    @apply md:animate-[floatUpDown_8s_cubic-bezier(0.45,0,0.55,1)_infinite];
+    animation: floatUpDown 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
   }
 
   .grid-cell-hover {
