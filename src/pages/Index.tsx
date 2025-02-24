@@ -246,7 +246,7 @@ const Index = () => {
         <div className="flex items-center gap-4 mb-2 md:mb-0">
           <MusicToggle />
           <div className="flex items-center gap-2">
-            <h1 className="text-xl md:text-2xl font-bold animate-glow">Anita K.</h1>
+            <h1 className="text-xl md:text-2xl font-bold animate-glow">Hi, meet my outie Anita K.</h1>
             <span className="text-xs md:text-sm opacity-50">FOUNDING GROWTH LEAD</span>
           </div>
         </div>
@@ -346,3 +346,4 @@ const Index = () => {
 };
 
 export default Index;
+
