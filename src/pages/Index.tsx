@@ -63,6 +63,43 @@ const Index = () => {
     },
   ];
 
+  // Adding decorative letters positions within each circle
+  const decorativeLetters: LetterPosition[] = [
+    // ABOUT ME inner circle
+    { row: 4, col: 5, letter: 'X', buttonId: 'none' },
+    { row: 4, col: 6, letter: 'Y', buttonId: 'none' },
+    { row: 5, col: 6, letter: 'Z', buttonId: 'none' },
+    { row: 5, col: 5, letter: 'W', buttonId: 'none' },
+    
+    // LINKEDIN inner circle
+    { row: 4, col: 23, letter: 'P', buttonId: 'none' },
+    { row: 4, col: 24, letter: 'Q', buttonId: 'none' },
+    { row: 5, col: 24, letter: 'R', buttonId: 'none' },
+    { row: 5, col: 23, letter: 'S', buttonId: 'none' },
+    
+    // ARTICLE inner circle
+    { row: 13, col: 5, letter: 'F', buttonId: 'none' },
+    { row: 13, col: 6, letter: 'G', buttonId: 'none' },
+    { row: 14, col: 6, letter: 'H', buttonId: 'none' },
+    { row: 14, col: 5, letter: 'J', buttonId: 'none' },
+    
+    // PROJECT inner circle
+    { row: 13, col: 23, letter: 'M', buttonId: 'none' },
+    { row: 13, col: 24, letter: 'N', buttonId: 'none' },
+    { row: 14, col: 24, letter: 'K', buttonId: 'none' },
+    { row: 14, col: 23, letter: 'L', buttonId: 'none' },
+    
+    // VIDEO inner circle
+    { row: 22, col: 5, letter: 'A', buttonId: 'none' },
+    { row: 22, col: 6, letter: 'B', buttonId: 'none' },
+    
+    // BOOK CALL inner circle
+    { row: 22, col: 23, letter: 'X', buttonId: 'none' },
+    { row: 22, col: 24, letter: 'Y', buttonId: 'none' },
+    { row: 23, col: 24, letter: 'Z', buttonId: 'none' },
+    { row: 23, col: 23, letter: 'W', buttonId: 'none' },
+  ];
+
   const letterPositions: LetterPosition[] = [
     { row: 4, col: 4, letter: 'A', buttonId: 'about' },
     { row: 3, col: 5, letter: 'B', buttonId: 'about' },
@@ -113,6 +150,9 @@ const Index = () => {
     { row: 23, col: 22, letter: 'L', buttonId: 'call' },
   ];
 
+  // Combine the original letter positions with decorative ones
+  const allLetterPositions = [...letterPositions, ...decorativeLetters];
+
   useEffect(() => {
     const generateGrid = () => {
       const rows = 30;
@@ -127,8 +167,8 @@ const Index = () => {
         newGrid.push(row);
       }
 
-      letterPositions.forEach(({ row, col, letter, buttonId }) => {
-        const isButtonComplete = foundLetters[buttonId];
+      allLetterPositions.forEach(({ row, col, letter, buttonId }) => {
+        const isButtonComplete = buttonId !== 'none' && foundLetters[buttonId];
         if (!isButtonComplete && newGrid[row] && newGrid[row][col]) {
           newGrid[row][col] = letter;
         } else if (isButtonComplete && newGrid[row] && newGrid[row][col]) {
@@ -150,6 +190,7 @@ const Index = () => {
     return sum % 3 === 0 ? 'float-horizontal' : sum % 3 === 1 ? 'float-vertical' : '';
   };
 
+  // Update handleCellClick to only work with non-decorative letters
   const handleCellClick = (row: number, col: number) => {
     const clickedPosition = letterPositions.find(pos => pos.row === row && pos.col === col);
     
