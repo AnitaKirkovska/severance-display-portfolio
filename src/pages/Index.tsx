@@ -1,8 +1,8 @@
-
 import { useState, useEffect, useRef } from 'react';
 import Confetti from 'react-confetti';
 import MusicToggle from '../components/MusicToggle';
 import { ChevronDown } from 'lucide-react';
+import Welcome from '../components/Welcome';
 
 interface LetterPosition {
   row: number;
@@ -12,6 +12,7 @@ interface LetterPosition {
 }
 
 const Index = () => {
+  const [showWelcome, setShowWelcome] = useState(true);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
   const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
   const [grid, setGrid] = useState<string[][]>([]);
@@ -267,6 +268,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden animate-fadeIn">
+      {showWelcome && <Welcome onClose={() => setShowWelcome(false)} />}
       {showConfetti && <Confetti />}
       
       <header className="fixed top-0 left-0 right-0 p-2 md:p-4 flex flex-col md:flex-row justify-between items-center border-b border-cyber-blue/20 bg-cyber-black/80 backdrop-blur-md z-50">
@@ -373,4 +375,3 @@ const Index = () => {
 };
 
 export default Index;
-
